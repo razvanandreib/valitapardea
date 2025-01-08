@@ -1,0 +1,177 @@
+---
+import { Image } from "astro:assets";
+
+import logo from "../assets/logo/logo.png";
+import burger from "../assets/icons/burger.svg"
+
+let links = [
+    {
+        text:" Despre",
+        link: "/despre",
+    },
+    {
+        text:" Servicii",
+        link: "/servicii",
+    },
+    {
+        text:"Blog",
+        link: "/blog",
+    },
+    {
+        text:"Galerie",
+        link: "/galerie",
+    },
+    {
+        text:"Contact",
+        link: "/contact",
+    }
+]
+
+---
+
+<nav class="navbar-wrapper">
+    <div class="burger">
+        <Image  src={burger} height={40} width={40} alt="meniu burger"/>
+    </div>
+    <div class="navbar">
+        <div class="navbar__links">
+            <a href={links[0].link}>{links[0].text.toUpperCase()}</a>
+            <a href={links[1].link}>{links[1].text.toUpperCase()}</a>
+            <a href={links[2].link}>{links[2].text.toUpperCase()}</a>
+            <a href="/">
+                <Image src={logo} alt="Valentin Tapardea Fotograf Nunti Bucuresti"/>
+            </a>
+            <a href={links[3].link}>{links[3].text.toUpperCase()}</a>
+            <a href={links[4].link}>{links[4].text.toUpperCase()}</a>
+        </div>
+    </div>
+</nav>
+
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+    .burger {
+        @media(min-width: 750px) {
+            display: none;
+        }
+
+        @media(max-width: 750px) {
+            position: absolute;
+            right: 1rem;
+            top: 4rem;
+        }
+    }
+
+    .navbar-wrapper, 
+    .navbar{
+        @include flex-center;
+    }
+
+    .navbar-wrapper {
+        padding: 4rem 0;
+        position: relative;
+
+        @media(max-width: 750px) {
+            @include flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+    }
+
+    .navbar {
+        @include max-width-1024;
+        padding: 0 2rem;
+
+        @media(max-width: 750px) {
+                flex-direction: column;
+            }
+
+        &__links {
+            @include flex-center;
+            gap:4rem;
+
+            @media(max-width: 750px) {
+                justify-content: flex-start;
+                display: none;
+            }
+
+            >a {
+                @include nav-links; 
+                border-bottom: 1px solid transparent;
+            }
+
+            > a:hover {
+                border-bottom: 1px solid $font-color;
+            }
+
+            >a:nth-of-type(4) {
+                @include flex-center;
+                
+                >img {
+                    height: 80%;
+                    width: 30rem;
+                }
+                border-bottom: none;
+            }
+
+            @media(max-width: 750px) {
+                height: 100svh;
+                flex-direction: column;
+                gap:2rem;
+            }
+
+            >.logo-link {
+                @include flex-center-col;
+
+                >span:nth-of-type(1) {
+                    @include headers;
+                    // @include para-crimson;
+                    // font-size: 2.5rem;
+                    margin-bottom: -1.5rem;
+                    margin-top: -2rem;
+                }
+
+               
+                
+
+                >span:nth-of-type(2) {
+                    @include para-crimson;
+                    font-size: 1.4rem;
+                }
+            }
+        }
+
+        &__quota {
+            margin-left: 2rem;
+                    @include para-crimson;
+                }
+            
+
+            @media(max-width: 750px) {
+                border-left: none;
+                margin: 2rem 0 0 0;
+                padding: 2rem 0 0 0;
+                width: 100%;
+            }
+        }
+
+        .display {
+            display: flex;
+        }
+
+        .hide {
+            display: none;
+        }
+
+</style>
+
+<script>
+const burger = document.querySelector(".burger");
+const navbarLinks = document.querySelector(".navbar__links");
+
+burger?.addEventListener("click", () => {
+    navbarLinks?.classList.toggle("display");
+});
+
+</script>

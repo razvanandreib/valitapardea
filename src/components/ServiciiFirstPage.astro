@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+
+let servicii = ['fotografii de nunta', "fotografii portret", "fotografii de botez", 'fotografii studio']
+
+import serv1 from "../assets/first-page/serv1.png"
+import serv2 from "../assets/first-page/serv2.png"
+---
+
+<section class="servicii-wrapper">
+    <div class="servicii-container">
+        <Image src={serv1} width={250} height={250} alt="poza nunta" class="top-left"/>
+        <div class="text-container">
+            <p>Servicii oferite</p>
+            {
+                servicii.map((info)=>(
+                    <p>{info.toLocaleUpperCase()} </p>
+                ))
+            }
+        </div>
+        <Image src={serv2} width={250} height={250} alt="poza nunta" class="bottom-right"/>
+    </div>
+</section>
+
+<style lang="scss">
+    @use '../styles/variables' as *;
+
+    .servicii-wrapper {
+        @include flex-center-col;
+        background-color: $grey;
+    }
+
+    .servicii-container {
+        @include max-width-1024;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        position: relative;
+
+        >img {
+            object-fit: contain;
+        }
+
+        .top-left {
+            align-self: flex-start;
+        }
+
+        .bottom-right {
+            align-self: flex-end;
+        }
+
+        .text-container {
+            @include flex-center-col;
+            gap: 2rem;
+            padding: 4rem 0;
+
+            > p {
+                @include para-crimson;
+                font-size: 3.5rem;
+            }
+
+            > p:nth-of-type(1) {
+                font-size: 2.5rem;
+            }
+        }
+    }
+</style>

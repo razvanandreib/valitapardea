@@ -1,0 +1,16 @@
+---
+import { getCollection } from "astro:content";
+
+const blogPosts = await getCollection("blog")
+
+const blogPostDate = blogPosts.sort((a,b)=> Date.parse(b.data.publishedDate) - Date.parse(a.data.publishedDate));
+
+const blogPostFiltered = blogPostDate.filter((filter)=> filter.data.draft === false);
+---
+
+{
+    blogPostFiltered.map((info)=> (
+        <a href={info.data.slug}>{info.data.link}</a>
+        <p>{info.data.publishedDate}</p>
+    ))
+}

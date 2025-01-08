@@ -1,0 +1,116 @@
+@use "../variables/abstracts.scss" as *;
+
+@use "@fontsource-variable/cormorant";
+@use '@fontsource/crimson-text';
+@use "@fontsource/qwitcher-grypen";
+@use '@fontsource-variable/playfair';
+
+//display
+
+@mixin flex {
+    display: flex;
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-just-center {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin flex-align-center {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flex-center-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+//typography
+
+@mixin para-crimson {
+font-family: 'Crimson Text', serif;
+font-size: 1.6rem;
+color: $font-color;
+}
+
+
+@mixin para-cormorant {
+    font-family: "Cormorant Variable",sans-serif;
+    font-size: 1.4rem;
+    color: $font-color;
+    font-weight: 500;
+}
+
+@mixin para-playfair {
+    font-family: "Playfair Variable", serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+}
+
+@mixin headers {
+    font-family: 'Qwitcher Grypen', cursive;
+    font-size: 5rem;
+    color: $font-color;
+}
+
+@mixin headers-cormorant {
+    font-family: "Cormorant Variable", sans-serif;
+    font-size: 5rem;
+    color: $font-color;
+    font-weight: 400;
+}
+
+
+@mixin header-playfair {
+    font-family: 'Playfair Variable', serif;
+    font-weight: 500;
+}
+
+
+@mixin header-cormorant {
+    font-family: "Cormorant Variable", sans-serif;
+    font-size: 3rem;    
+    color: $font-color;
+    font-weight: 400;
+}
+
+
+@mixin nav-links {
+    @include para-crimson;
+    font-size: 1.4rem;
+}
+
+
+@mixin text-shadow {
+    text-shadow: 1px 1px 3px #343434;
+}
+
+//display
+
+@mixin max-width-1024 {
+    max-width: 102.4rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+//btn-default
+
+@mixin btn-default {
+    all: unset;
+    background-color: #ffffffe7;
+    padding: 1.10rem 3rem;
+    border-radius: 10px;
+    font-size: 1.8rem;
+    font-family: "Playfair Variable", serif;
+    cursor: pointer;
+}

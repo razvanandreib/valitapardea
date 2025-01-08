@@ -1,0 +1,63 @@
+<section class="esti-gata-wrapper">
+    <div class="esti-gata-container">
+        <p>Esti Gata Sa Iti</p>
+        <h6>Spun <span>Povestea</span></h6>
+        <p>Fiecare poveste de dragoste merita sa fie documentata cu emotie</p>
+        <p>Hai sa transformam momentele tale in amintiri de neuitat, cu fotografii care reflecta cine esti cu adevarat.</p>
+        <button>Rezerva Data</button>
+    </div>
+</section>
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+    .esti-gata-wrapper {
+        @include flex-center;
+    }
+
+    .esti-gata-container {
+        @include flex-center;
+        @include max-width-1024;
+        flex-direction: column;
+        background:linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url("../assets/first-page/esti-gata.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 60rem;
+        width: 100%;
+        text-align: center;
+        padding: 0 2rem;
+        
+        >h6 {
+            @include header-playfair; 
+            font-size: 5rem;
+
+            >span {
+                font-style: italic
+            }
+        }
+
+        >p:nth-of-type(1) {
+            @include para-crimson;
+            font-size: 2rem;
+            color: $white;
+        }
+
+
+        >p {
+            @include para-crimson;
+            font-size: 1.6rem;
+        }
+
+        >h6,p {
+            color: $white;
+        }
+
+
+        >button {
+            @include btn-default;
+            margin-top: 4rem;
+        }
+    }
+
+</style>

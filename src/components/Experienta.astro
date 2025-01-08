@@ -1,0 +1,98 @@
+---
+import { Image } from "astro:assets"
+
+import flower1 from "../assets/icons/flower1.png"
+import flower2 from "../assets/icons/flower2.png"
+import flower3 from "../assets/icons/flower3.png"
+import flower4 from "../assets/icons/flower4.png"
+
+let experienceCards = [
+{
+        image:flower1,
+        number: "102",
+        text: "Nunti",
+        alt: "iconita floare"
+    },
+    {
+        image:flower2,
+        number: "4",
+        text: "Ani experienta",
+        alt: "iconita floare"
+    },
+    {
+        image:flower3,
+        number: "32012",
+        text: "Fotografii facute",
+        alt: "iconita floare"
+
+    },
+    {
+        image:flower4,
+        number: "200",
+        text: "Evenimente",
+        alt: "iconita floare"
+    }
+]
+---
+
+<section class="experienta-wrapper">
+    <h3>EXPERIENTA</h3>
+    <div class="experienta-container">
+        {
+            experienceCards.map((info=>(
+                <div>
+                    <Image src={info.image} alt={info.alt}/>
+                    <div>
+                        <p>{info.number}</p>
+                        <p>{info.text}</p>
+                    </div>
+                </div>
+            )))
+        }   
+    </div>
+</section>
+
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+    .experienta-wrapper {
+        @include flex-center-col;
+        padding: 8rem 0;
+
+        >h3 {
+            @include header-playfair;
+            color: $font-color;
+            font-size: 2.5rem;
+        }
+    }
+
+    .experienta-container {
+        @include max-width-1024;
+        @include flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+
+
+        >div {
+            @include flex-center;
+            max-width: 25rem;
+
+                >div {
+                    >p {
+                    @include para-crimson;
+                }
+                    >p:nth-of-type(1) {
+                        font-size: 2.2rem;
+                    }
+                
+            }
+
+            >img {
+                object-fit: contain;
+                width: 10rem;
+            }
+        }
+    }
+</style>

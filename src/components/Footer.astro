@@ -1,0 +1,127 @@
+---
+import Image from "astro/components/Image.astro"
+
+import image1 from "../assets/imagini/first-page/first-page-first-card.jpg"
+import image2 from "../assets/imagini/first-page/first-page-second-card.jpg"
+import image3 from "../assets/imagini/first-page/first-page-third-card.jpg"
+import image4 from "../assets/imagini/first-page/testimonials-1.jpg"
+import image5 from "../assets/imagini/first-page/testimonials-2.jpg"
+---
+
+
+<footer class="footer-wrapper">
+    <div class="footer-instagram">
+        <div class="footer-instagram__header">
+            <p>URMARESTE POVESTILE PE</p>
+            <p>INSTAGRAM</p>
+            <a target="_blank" rel="noopener" href="/">@valentitapardea</a>
+        </div>
+        <div class="footer-instagram__images">
+            <Image src={image1} alt="images"/>
+            <Image src={image2} alt="images"/>
+            <Image src={image3} alt="images"/>
+            <Image src={image4} alt="images"/>
+            <Image src={image5} alt="images"/>
+        </div>
+    </div>
+    <div class="footer-information">
+        <div class="footer-information__logo">
+            <a class="logo-link" href="/"><span>Valentin Tapardea</span> <span>Memorii. Povesti. Oameni</span></a>
+        </div>
+        <div class="footer-information__links">
+            <a href="">Servicii</a>
+            <a href="">Blog</a>
+            <a href="">Povesti</a>
+        </div>
+        <div class="footer-information__links">
+            <a href="">Despre</a>
+            <a href="">Contact</a>
+            <a href="">Cabina</a>
+        </div>
+        <div class="footer-information__links">
+            <a href="">Cere oferta</a>
+            <a href="">Portofoliu</a>
+            <a href="">Galerie</a>
+        </div>
+
+    </div>
+</footer>
+
+<style lang="scss">
+    @use "../styles/variables/index.scss" as *;
+
+
+    .footer-wrapper {
+        @include flex-center-col;
+    }
+
+    .footer-instagram {
+        @include flex-center-col;
+
+        &__header {
+            text-align: center;
+            margin-bottom: 4rem;
+
+            >p {
+                @include para-crimson;
+            }
+
+            > p:nth-of-type(2) {
+                @include headers;
+                font-size: 8rem;
+            }
+
+            > a {
+                @include para-cormorant;
+                font-size: 2rem;
+                font-style: italic;
+            }
+        }
+
+        &__images {
+            @include flex;
+            width: 100%;
+            >img {
+                width: 100%;
+                height:30rem;
+                object-fit: cover;
+            }
+        }
+    }
+
+
+    .footer-information {
+        @include flex;
+        justify-content: space-around;
+        padding: 5rem;
+        background-color: $grey-card-back;
+        width: 100%;
+
+        &__links {
+            @include flex-center-col;
+            gap: 1rem;
+            > a {
+                @include para-crimson;
+            }
+        }
+    }
+
+.footer-information__logo {
+    
+    >a {
+        @include flex-center-col;   
+        >span:nth-of-type(1) {
+                    @include headers;
+                    font-size: 5rem;
+                    margin-bottom: -1.5rem;
+                    margin-top: -2rem;
+                }
+
+                >span:nth-of-type(2) {
+                    @include para-crimson;
+                    font-size: 1.4rem;
+                }
+    }
+               
+}
+</style>

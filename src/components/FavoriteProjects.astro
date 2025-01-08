@@ -1,0 +1,182 @@
+---
+import { Image } from "astro:assets";
+
+
+import favImage1 from "../assets/imagini/first-page/favorite-projectes-1.jpg";
+import favImage2 from "../assets/imagini/first-page/favorite-projectes-2.jpg";
+import favImage3 from "../assets/imagini/first-page/favorite-projectes-3.jpg";
+import favImage4 from "../assets/imagini/first-page/favorite-projectes-4.jpg";
+---
+<section class="favorite-projects-wrapper">
+    <div class="favorite-projects-header">
+        <p>VALENTIN TAPARDEA</p>
+        <h6>PROIECTE DE SUFLET</h6>
+    </div>
+    <div class="favorite-projects">
+         <div class="favorite-projects-options">
+            <p data-id="nunti" class="selected">Nunti</p>
+            <p data-id="lifestyle">Lifestyle</p>
+            <p data-id="thrashthedress">Trash the dress</p>
+            <p data-id="studio">Studio</p>
+         </div>
+         <div class="favorite-projects-image">
+            <Image data-id="nunti" src={favImage1} alt="imagine" style="display: block;" />   
+            <Image data-id="lifestyle" src={favImage2} alt="imagine" style="display: none;" />
+            <Image data-id="thrashthedress" src={favImage3} alt="imagine" style="display: none;" />
+            <Image data-id="studio" src={favImage4} alt="imagine" style="display: none;" />
+         </div>
+         <div class="favorite-projects-info">
+            <div data-id="nunti" style="display: block;">
+                <p>Arta fotografiei de zi cu zi, în stil de viață își propune în principal să surprindă portrete ale oamenilor în situații, evenimente din viața reală într-o manieră artistică.</p>
+                <p>Scopul principal este de a spune povești despre viețile oamenilor sau de a inspira oamenii în vremuri diferite.</p>
+                <a href="/">CERE OFERTA</a>
+            </div>
+            <div data-id="lifestyle" style="display: none;">
+                <p>Sclipici sclipici culoar pentru totdeauna salată fericită Va cabină foto fotograf limuzină, chitară bas acustic mama biserică tată domnișoară de onoare.</p>
+                <a href="/">CERE OFERTA</a>
+            </div>
+            <div data-id="thrashthedress" style="display: none;">
+                <p>Noroc photobooth fotograf limuzin buchet şampanie inel mama, sclipici beat groomsman penibil tort desert.
+                    Colegii jenant tort desert chitara bas acustic, florar prea scump sarbatoresc voal flori frumoase Will voal dans sclipici.</p>
+                <a href="/">CERE OFERTA</a>
+            </div>
+            <div data-id="studio" style="display: none;">
+                <p>Toast inel biserica tata domnisoara de onoare nunta prea scump florar mama Will. Mame tort desert buchet centre de piesa sarbatoresc paiete smoking tata domnisoara de onoare sarbatoreste.
+                    Voal smoking dans tatăl domnișoară de onoare urale toast, culoar Will biserica chitară acustic bas toast unitate.</p>
+                <a href="/">CERE OFERTA</a>
+            </div>
+         </div>
+    </div>
+</section>
+
+
+<style lang="scss">
+@use "../styles/variables/index.scss" as *;
+
+
+    .favorite-projects-options p.selected {
+        border-bottom: 1px solid $font-color;
+        cursor: pointer;
+}
+
+    .favorite-projects-wrapper {
+        @include flex-center-col;
+        padding: 12rem 0;
+    }
+
+
+    .favorite-projects-header {
+        text-align: center;
+
+        >p {
+            @include para-crimson;
+            font-size: 3rem;
+            font-weight: 100;
+        }
+
+        > h6 {
+            @include headers;
+            font-size: 6rem;
+            font-weight: 100;
+            letter-spacing: 1.2rem;
+        }
+    }
+
+    .favorite-projects {
+        @include flex-center;
+        gap: 4rem;
+        margin-top: 4rem;
+    }
+
+    .favorite-projects-image {
+        width: 100%;
+
+        >img {
+            height: 50rem;
+            object-fit: cover;
+        }
+        
+    }
+
+
+    .favorite-projects-options,
+     .favorite-projects-info {
+        max-width: 40rem;
+        width: 100%
+    }
+
+    .favorite-projects-options {
+        @include flex;
+        flex-direction: column;
+        gap: 2rem;  
+        
+        > p {
+            @include para-crimson;
+            font-size: 2.5rem;
+        } 
+    }
+
+    .favorite-projects-info {
+
+        >div {
+            @include flex-center-col;
+            gap: 1rem;
+        }
+
+        > div > p {
+            @include para-crimson;
+        }
+
+        > div > a {
+            @include para-crimson;
+            font-size: 1.5rem;
+            padding: 1rem 2.5rem;
+            border: 1px solid $font-color;;
+            align-self: self-start;
+            margin-top: 2rem;
+            transition: all 300ms ease;
+        }
+
+        > div > a:hover {
+            border: 1px solid $greys-back;
+        }
+    }
+
+
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const options = document.querySelectorAll('.favorite-projects-options p');
+    const images = document.querySelectorAll('.favorite-projects-image [data-id]');
+    const infoSections = document.querySelectorAll('.favorite-projects-info > div');
+
+    // Function to handle displaying the selected option's content and underline effect
+    function selectOption(option) {
+        const id = option.getAttribute('data-id');
+
+        // Remove 'selected' class from all options and hide all images and info sections
+        options.forEach(opt => opt.classList.remove('selected'));
+        images.forEach(image => image.style.display = 'none');
+        infoSections.forEach(section => section.style.display = 'none');
+
+        // Add 'selected' class to the clicked option
+        option.classList.add('selected');
+
+        // Show the corresponding image and info section
+        document.querySelector(`.favorite-projects-image [data-id="${id}"]`).style.display = 'flex';
+        document.querySelector(`.favorite-projects-info [data-id="${id}"]`).style.display = 'flex';
+    }
+
+    // Set the default state (first option selected)
+    selectOption(options[0]);
+
+    // Attach click event listeners to each option
+    options.forEach(option => {
+        option.addEventListener('click', () => {
+            selectOption(option);
+        });
+    });
+});
+</script>

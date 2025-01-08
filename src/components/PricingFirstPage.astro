@@ -1,0 +1,170 @@
+---
+import { Image } from "astro:assets";
+
+import lalea from "../assets/icons/flower.png"
+import floare from "../assets/icons/rose.png"
+import trandafir from "../assets/icons/rose2.png"
+
+let cardPriceInfo = [
+    {
+        image: trandafir,
+        alt: "iconite floare",
+        title: "Mini Sesiune",
+        pret: "400ron",
+        points: [
+            "Sesiune 40 minute", "20 poze","Portret si grupuri de persoane"
+        ],
+        linkInfo: [
+            {
+            link: "/",
+            text: "CONTACT",
+            }
+        ]
+    },
+    {
+        image: lalea,
+        alt: "iconite floare",
+        title: "Mini Sesiune",
+        pret: "350ron",
+        points: [
+            "Sesiune 40 minute", "20 poze","Portret si grupuri de persoane"
+        ],
+        linkInfo: [
+            {
+            link: "/",
+            text: "CONTACT",
+            }
+        ]
+    },    
+    {
+        image: floare,
+        alt: "iconite floare",
+        title: "Mini Sesiune",
+        pret: "1000ron",
+        points: [
+            "Sesiune 40 minute", "20 poze","Portret si grupuri de persoane"
+        ],
+        linkInfo: [
+            {
+            link: "/",
+            text: "CONTACT",
+            }
+        ]
+    }
+]
+---
+
+<section class="pricing-wrapper">
+    <div class="pricing-header">
+        <p>DETALII DESPRE</p>
+        <h6>PRETURI</h6>
+        <p>Determinarea costului total nu este un proces simplu din cauza tuturor factorilor implicați. Contactează-ma pentru o propunere detaliată.</p>
+    </div>
+    <div class="pricing">
+        {
+            cardPriceInfo.map((info)=> (
+                <div class="pricing__card">
+                    <Image src={info.image} alt={info.alt}/>
+                    <h6>{info.title}</h6>
+                    <p>{info.pret}</p>
+                    <ul>
+                        {info.points.map((info)=>(
+                            <li>{info}</li>
+                        ))}
+                    </ul>
+                    {info.linkInfo.map((info)=>(
+                        <a href={info.link}>{info.text}</a>
+                    ))}
+                </div>
+            ))
+        }
+    </div>
+</section>
+
+
+<style lang="scss">
+    @use "../styles/variables/index.scss" as *;
+
+    .pricing-wrapper {
+        @include flex-center-col;
+        background: url("../assets/imagini/background/shadow-leaves.png");
+    }
+
+
+    .pricing-header {
+        text-align: center;
+        padding-bottom: 10rem;
+        max-width: 80rem;
+        width: 100%;
+
+        >h6 {
+            @include headers;
+            font-size: 8rem;
+            font-weight: 100;
+        }
+
+        > p {
+            @include para-cormorant;
+            font-size: 2rem;
+        }
+    }
+
+    .pricing {
+        @include flex-center;
+        gap: 4rem;
+        width: 100%;
+
+        &__card {
+            @include flex-center-col;
+            gap: 1rem;
+            max-width:37rem;
+            width: 100%;
+            background-color: $grey-card-back;
+            padding: 4rem 0;
+
+
+            >h6 {
+                @include para-crimson;
+                font-size: 2.5rem;
+                font-weight: 100;
+            }
+
+            > p {
+                @include para-cormorant;
+                font-size: 5.5rem;
+                font-weight: 200;
+            }
+
+            >img{
+                width: 7rem;
+                height: 7rem;
+            }
+
+            >ul>li {
+                @include para-crimson;
+                text-align: center;
+                list-style: none;
+            }
+
+            > a{
+                @include para-crimson;
+                font-size: 1.6rem;
+                padding-top: 4rem;
+            }
+
+        }
+
+        &__card:nth-of-type(2) {
+            background-color: $green;
+
+            >h6,p,a {
+                color: white;
+            }
+
+            >ul>li {
+                color: white;
+            }
+        }
+    }
+
+</style>

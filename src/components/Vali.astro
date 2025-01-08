@@ -1,0 +1,120 @@
+---
+import { Image } from "astro:assets";
+
+//icons
+import email from "../assets/icons/email.svg"
+import phone from "../assets/icons/phone.svg"
+import facebook from "../assets/icons/facebook.svg"
+import instagram from "../assets/icons/instagram.svg"
+
+//Vali poza
+import vali from "../assets/vali/vali.png"
+---
+
+<section class="despre-wrapper">
+    <div class="despre-container">
+        <div class="despre-text">
+            <h4>VALENTIN TAPARDEA</h4>
+            <p>Fotograf</p>
+            <div class="despre-text-contact">
+                <div class="despre-text-contact__email">
+                    <Image src={email} alt="iconita email"/>
+                    <p>E-mail: <a href="mailto:valentintapardea@gmail.com">valentintapardea@gmail.com</a></p>
+                </div>
+                <div class="despre-text-contact__telefon">
+                    <Image src={phone} alt="iconita telefon"/>
+                    <p>Telefon: <a href="tel:0724216334">0724216334</a></p>
+                </div>
+            </div>
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et eu volutpat dolore magna.
+Aliquet lectus proin nibh nisl condimentum. Senectus et netus et  malesuada fames ac. Pretium nibh ipsum consequat nisl. Eleifend donec  pretium vulputate sapien quisque non nec sagittis aliquam malesuada.  Erat nam at lectus urna. In est ante in cursus mattis.
+            </p>
+            <div class="despre-sociale">
+                <a href=""><Image src={facebook} alt="Link Facebook"/></a>
+                <a href=""><Image src={instagram} alt="Link Instagram"/></a>
+            </div>
+        </div>
+        <div class="despre-image">
+            <Image src={vali} alt="Valentin Tapardea - Fotograf Nunta Bucuresti"/>
+        </div>
+    </div>
+</section>
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+
+    .despre-wrapper {
+        @include flex-center;
+    }
+
+    .despre-container {
+        @include flex-center;
+        @include max-width-1024; 
+        gap: 4rem;
+
+        @media(max-width:600px) {
+            flex-direction: column;
+        }
+    }
+
+    .despre-text {
+        @include flex;
+        flex-direction: column;
+        gap: 2rem;
+        max-width: 50rem;
+        width: calc(100% - 4rem);
+        padding: 0 2rem;
+
+
+        > h4 {
+            @include header-playfair;
+            font-size: 3rem;
+        }
+
+        > p {
+            @include para-crimson;
+        }
+
+        > p:nth-of-type(2) {
+            margin-top: 2rem;
+            padding-top: 4rem;
+            border-top: 1px solid $font-color;
+        }
+    }
+
+    .despre-image {
+        >img {
+            object-fit: cover;
+        }
+    }
+
+    .despre-text-contact {
+        &__email, &__telefon {
+            >p {
+                @include para-crimson;
+            }
+
+            @include flex;
+            align-items: center;
+            gap: 1rem;
+
+            >img {
+                @include flex;
+                width: 3rem;
+                height: 3rem;
+            }
+        }
+    }
+
+    .despre-sociale {
+        @include flex;
+        gap: 2rem;
+
+        >a>img {
+            width: 3rem;
+            height: 3rem;
+        }
+    }
+</style>

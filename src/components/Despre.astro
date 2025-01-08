@@ -1,0 +1,78 @@
+---
+import { Image } from "astro:assets"
+
+import vali from "../assets/vali/vali.png"
+---
+
+
+
+<section class="despre-wrapper">
+    <div class="despre-container">
+        <Image src={vali} width="450" heigth="450" alt="Valentin Tapardea - Fotograf Nunta Bucuresti"/>
+        <div class="despre-text">
+            <p>Despre mine</p>
+            <h2>Povestea voastra de dragoste merita sa fie spusa intr-un mod de neuitat</h2>
+            <p>
+                Abordarea mea se concentrează pe surprinderea acelor momente autentice și naturale care fac ziua voastră unică. Cu un ochi atent la detalii și o pasiune pentru lumina naturală, creez imagini care par spontane, dar pline de artă, astfel încât să vă puteți bucura pe deplin de fiecare clipă.
+            </p>
+            <button>Afla despre mine</button>
+        </div>
+    </div>
+</section>
+
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+
+
+    .despre-wrapper {
+        @include flex-center;
+        padding: 4rem 0;
+    }
+
+    .despre-container {
+        @include max-width-1024;
+        @include flex-center;
+        gap: 2rem;
+        padding: 0 2rem;
+
+       @media(max-width: 730px) {
+        flex-direction: column;
+       }
+
+        >img {
+            width: calc(100% + 4rem);
+            max-width: 51.2rem;
+            object-fit: cover;
+        }
+
+    }
+
+    .despre-text {
+        @include flex;
+        flex-direction: column;
+        gap: 3.5rem;
+        width: 100%;
+        max-width: 51.2rem;
+
+        >p {
+            @include para-crimson;
+        }
+
+        >h2 {
+            @include header-playfair;
+            font-size: 3rem;
+        }
+
+
+        >button {
+            @include btn-default;
+            background-color: $grey;
+            align-self: flex-start;
+        }
+    }
+
+
+
+</style>

@@ -1,0 +1,156 @@
+---
+//modules
+import { Image } from "astro:assets"
+
+//images
+import header from "../../assets/galerie/Ana-si-Edi/header.webp"
+import AnaTop from "../../assets/galerie/Ana-si-Edi/Ana-top-img.png"
+import AnaBot from "../../assets/galerie/Ana-si-Edi/Ana-bot-img.png"
+
+//components and layouts
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import Navbar from "../../components/Navbar.astro"
+import FooterRedesign from "../../components/FooterRedesign.astro"
+import Galerie from "../../components/Galerie.astro"
+---
+
+<BaseLayout title="Valentin Tapardea - Galerie - Fotografii nunta - Ana si Edie" description="Ana si Edie">
+    <Navbar/>
+    <section class="galerie-article-container">
+        <div class="galerie-article-wrapper">
+            <div class="galerie-article">
+                <div class="galerie-article__header">
+                    <Image src={header} alt="Galerie Ana si Edi"/>
+                </div>
+                <div class="galerie-article-information">
+                    <div class="galerie-article-information-top">
+                        <div class="galerie-article-information-top__img">
+                            <Image src={AnaTop} alt="Ana si Edi"/>
+                        </div>
+                        <div class="galerie-article-information-top__text">
+                            <h2>„Celebrarea Dragostei Sub Cerul Pictat” acesta ar fi titlul cu care aș descrie nunta aceasta.</h2>
+                            <p>În cadrul idilic lângǎ Restaurantul Hestia Hotel, Ana și Edi, într-un decor de vis, sub un apus de soare care părea să fie pensulat special  pentru ei. Această galerie foto își propune să vă poarte prin calatoria  lor magică, de la promisiunile șoptite sub razele ultime ale soarelui,  la strălucirea stelelor sub care s-a dansat până în zori.</p>
+                            <h3>Detaliile Care Conturează O Poveste</h3>
+                            <p>Fiecare fotografie din această colecție este o mărturie a atenției incredibile  la detalii. De la aranjamentele din flori naturale, care par să danseze  în lumina caldă a apusului, la zâmbetele sincere schimbate între  invitați, fiecare element contribuie la narațiunea unui început  fericit. </p>
+                            <h3>Armonia Culorilor și a Sentimentelor</h3>
+                            <p>Culorile alese pentru decor atent împletite creează o atmosferă de basm. Când  priviți aceste imagini, veți observa cum lumina de apus îmbrățișează  siluetele și adaugă o dimensiune caldă, aproape palpabilă, fotografiei.</p>
+                        </div>
+                    </div>
+                    <div class="galerie-article-information-bottom">
+                        <div class="galerie-article-information-bottom__text">
+                            <h3>Muzica care a Unit Inimi</h3>
+                            <h3>Detaliile Care Conturează O Poveste</h3>
+                            <p>Totul a fost  acompaniat de acordurile unei trupe fabuloase, ale cărei melodii au  încurajat pași de dans, râsete și momente de intimitate. În această  galerie, fiecare cadru în care apare muzica captează nu doar sunetul, ci și vibrația emoției pure, transformând fiecare notă într-o amintire de  neuitat.</p>
+                            <h3>Navigând Prin Emoție și Artă</h3>
+                            <p>Vă  invit să navigați prin această galerie nu doar ca printr-o colecție de  imagini, ci ca prin o suită de momente unice, fiecare cu povestea sa,  fiecare cu emoția sa. Lasă-te purtat prin această călătorie vizuală și  simte bucuria, dragostea și entuziasmul care au animat această zi  specială.</p>
+                            <p>Aici, pe această pagină, fiecare fotografie este o  fereastră către inima evenimentului – nuntirea Anei și a lui Edi.  Privind prin aceste ferestre, îți vei putea aminti și celebra momentele  de neuitat și conexiunile create în acea zi magică.</p>
+                        </div>
+                        <div class="galerie-article-information-bottom__img">
+                            <Image src={AnaBot} alt="Ana si Edi"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="galerie">
+    <h4>Bine ati venit in povestea lor...</h4>
+    <div class="galerie-container">
+        <Galerie/>
+    </div>
+</section>
+<FooterRedesign/>
+</BaseLayout>
+
+<style lang="scss">
+    @use "../../styles/variables" as *;
+
+
+
+.galerie-article-container {
+    @include flex-center-col;
+}
+
+.galerie-article-wrapper {
+    @include max-width-1024;
+}
+
+.galerie-article {
+    &__header {
+
+        >img {
+        height: 50rem;
+        object-fit: cover;
+        object-position: 50% 20%;
+        }
+    }
+}
+
+.galerie-article-information {
+    @include flex-center-col;
+    padding: 4rem 0;
+}
+
+
+.galerie-article-information-top, .galerie-article-information-bottom {
+    @include flex;
+    gap: 4rem;
+
+    &__text {
+        @include flex;
+        flex-direction: column;
+        gap: 2rem;
+        max-width: 100%;
+        width: 60rem;
+
+        >h2 {
+            @include header-playfair;
+            font-size: 3rem;
+            line-height: 3rem;
+            color: $font-color;
+        }
+
+        >h3 {
+            @include header-playfair;
+            font-size: 2rem;
+            color: $font-color;
+        }
+
+        >p {
+            @include para-crimson;
+        }
+    }
+
+    &__img {
+        overflow: hidden;
+
+        > img {
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+    
+}
+
+.galerie-article-information-bottom {
+    padding-top: 4rem;
+}
+
+
+.galerie {
+    @include max-width-1024;
+
+    > h4 {
+        @include header-playfair;
+        font-size: 2.5rem;
+        color: $font-color;
+    }
+}
+
+.galerie-container  {
+    @include flex-center-col;
+}
+
+
+</style>

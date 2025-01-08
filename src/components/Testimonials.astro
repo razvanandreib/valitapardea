@@ -1,0 +1,83 @@
+---
+import { Image } from "astro:assets";
+
+import  testimoniale from "../assets/imagini/first-page/testimonials-1.jpg"
+import  quote from "../assets/icons/quote.svg";
+---
+
+
+<section class="testimonials-wrapper">
+    <p>CE SPUN CLIENTII</p>
+    <h6>TESTIMONIALE</h6>
+    <div class="testimonials">
+        <div class="testimonials__image">
+            <Image src={testimoniale} alt="testimoniale" />
+        </div>
+        <div class="testimonials__text-wrapper">
+            <div class="testimonials__text">
+                <Image src={quote} width={50} height={50} alt="hello"/>
+                <h6>Gabriela si Radu</h6>
+                <p>„Gabriela și Radu au fost o adevărată inspirație! Înconjurați de iubire și bucurie, au creat o atmosferă magică. A fost o onoare să le surprind povestea într-o zi atât de specială.”</p>
+                <a href="/">AFLA POVESTEA LOR</a>
+             </div> 
+        </div>
+    </div>
+</section>
+
+
+
+<style lang="scss">
+    @use "../styles/variables/index.scss" as *;
+
+    .testimonials-wrapper {
+        @include flex-center-col;
+        padding: 10rem 0;
+        text-align: center;
+
+        > p {
+            @include para-crimson;
+        }
+        > h6 {
+            @include headers;
+            letter-spacing: 1.1rem;
+            margin-bottom: 4rem
+        }
+    }
+
+    .testimonials {
+        @include flex;  
+        margin: 0 auto;
+        width: 80%;
+
+        &__text-wrapper {
+            @include flex-center-col;
+            background-color: $grey-card-back;
+        }
+
+        &__text {
+            @include flex-center-col;
+            gap: 2rem;
+            max-width: 50rem;
+            width: 100%;
+            padding: 0 10rem;
+            right: 0;
+            bottom: 0;
+
+            > h6 {
+                @include para-crimson;
+                font-size: 4rem;
+                font-weight: 100;
+            }
+
+            > p{
+                @include para-crimson;
+                font-style: italic;
+            }
+
+            > a {
+                @include para-crimson;
+            }
+        }
+    }
+
+</style>

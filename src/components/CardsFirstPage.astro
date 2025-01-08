@@ -1,0 +1,112 @@
+---
+import { Image } from "astro:assets";
+
+import wedding from "../assets/icons/wedding.png"
+import fluture from "../assets/icons/elopments.png"
+import portraits from "../assets/icons/portraits.png"
+import firstPageCard from "../assets/imagini/first-page/first-page-first-card.jpg"
+import secondPageCard from "../assets/imagini/first-page/first-page-second-card.jpg"
+import thirdPageCard from "../assets/imagini/first-page/first-page-third-card.jpg"
+
+import perpendicularLine from "../assets/icons/perpendicular-line.svg"
+---
+
+
+<section class="cards-presentation-wrapper">
+    <div class="cards-presentation">
+        <div class="card">
+            <Image class="card-icon" src={wedding} alt="iconita nunta"/>  
+            <h2>Nunti</h2>
+            <p>Filmez atât film, cât și digital și îmi creez imaginile pe baza luminii naturale și a emulsiei clasice de film și a compoziției imaginii.</p>
+            <a href="/portofoliu">VEZI PORTOFOLIU</a>
+        </div>
+        <div class="card" id="card-image">
+            <Image src={firstPageCard} alt="iconita nunta"/>  
+        </div>
+        <div class="card">
+            <Image class="card-icon" src={fluture} alt="iconita nunta"/>  
+            <h2>Nunti</h2>
+            <p>Filmez atât film, cât și digital și îmi creez imaginile pe baza luminii naturale și a emulsiei clasice de film și a compoziției imaginii.</p>
+            <a href="/portofoliu">VEZI PORTOFOLIU</a>
+        </div>
+    </div>
+    <div class="cards-presentation">
+      <div class="card" id="card-image">
+          <Image src={secondPageCard} alt="iconita nunta"/>  
+      </div>
+      <div class="card">
+        <Image class="card-icon" src={portraits} alt="iconita nunta"/>  
+        <h2>Nunti</h2>
+        <p>Filmez atât film, cât și digital și îmi creez imaginile pe baza luminii naturale și a emulsiei clasice de film și a compoziției imaginii.</p>
+        <a href="/portofoliu">VEZI PORTOFOLIU</a>
+    </div>
+
+      <div class="card" id="card-image">
+        <Image src={thirdPageCard} alt="iconita nunta"/>  
+    </div>
+
+  </div>
+
+</section>
+
+
+<style lang="scss">
+  @use "../styles/variables/index.scss" as *;
+
+  .cards-presentation {
+    @include flex-center;
+    gap: 4rem;
+    padding: 5rem 0;
+  }   
+
+  .cards-presentation:nth-of-type(1) {
+    padding-top: 10rem;
+  }
+
+  .card {
+    @include flex-center;
+    gap: 1rem;
+    flex-direction: column;
+    width: 100%;
+    max-width: 35rem;
+    max-height: 52rem;
+    height: 100%;
+    text-align: center;
+    line-height: 3rem;
+
+    
+
+    > h2 {
+      @include header-cormorant;
+    }
+
+    >p {
+      @include para-crimson;
+      padding: 0 0 2rem 0;
+    }
+    
+    >a {
+      @include nav-links;
+      padding: 2rem 0 0 0;
+      border-top: 1px solid $font-color;
+    }
+  }
+
+  #card-image {
+    width: 100%;
+    max-width: 40rem;
+    max-height: 52rem;
+    height: 100%;
+
+    >img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  .card-icon {
+    width: 15rem;
+    height: 15rem;
+    object-fit: contain;
+  }
+</style>

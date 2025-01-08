@@ -1,0 +1,331 @@
+---
+import { Image } from "astro:assets"
+
+//variables
+
+let mireAcasa = [ {
+    text : "Acasa la mireasa",
+    li:
+        ["Fotografierea rochiei, pantofilor, bijuteriilor, și a altor detalii importante.", 
+        "Momentele emoționante când mireasa este ajutată să se îmbrace.",
+        "Cadre cu domnișoarele de onoare și familia miresei."]
+},
+    {
+        text: "Acasa la mire",
+        li: ["Detalii ale costumului mirelui (butoni, cravată, pantofi).",
+        "Cadre cu cavalerii de onoare și familia mirelui."
+        ]
+    }
+]
+
+let bisericaText = [ {
+    text : "Fotografierea ceremoniei în biserică, inclusiv:",
+    li:
+        ["Intrarea mirilor și nașilor.", 
+        "Momentele de rugăciune și binecuvântare.",
+        "Schimbul de verighete.",
+        "Înconjurarea mesei, unul dintre cele mai simbolice momente ale cununiei."
+    ]
+}
+]
+
+let petrecereText = [ {
+    text : "Fotograful surprinde:",
+    li:
+        ["Intrarea mirilor și dansul de deschidere.", 
+        "Dansul mirilor și momentele-cheie de pe ringul de dans.",
+        "Interacțiunile dintre invitați și momentele spontane.",
+        "Tăierea tortului și alte momente speciale, precum furatul miresei sau aruncatul buchetului."
+    ]
+}
+]
+
+
+let sedintaFoto = [
+    {
+        li: ["O sesiune dedicată mirilor, de obicei realizată în timpul pauzei dintre biserică și petrecere.",
+         "Locația poate fi aleasă în funcție de preferințe: un parc, un castel, o plajă sau o zonă urbană."
+        ]
+    }
+]
+
+//import images
+import HeaderImage from "../assets/serv-page/header-servicii.png"
+import pregatireMire from "../assets/serv-page/serv-mire.png"
+import intalnireMiri from "../assets/serv-page/serv-miri.png";
+import mersBiserica from "../assets/serv-page/serv-biserica.png"
+import pozeGrup from "../assets/serv-page/serv-poza-grup.png"
+import pozaMiri from "../assets/serv-page/serv-foto-miri.png"
+import petrecere from "../assets/serv-page/serv-petrecere.png"
+
+
+//import icons
+import inele from "../assets/icons/wedding-rings-wedding-svgrepo-com(1).svg";
+import miri from "../assets/icons/wedding-relationships-couple-marry-svgrepo-com.svg";
+import biserica from "../assets/icons/church-illustration-4-svgrepo-com 1.svg";
+import pozeMiri from "../assets/icons/photo-group-svgrepo-com.svg";
+import party from "../assets/icons/party-popper-svgrepo-com.svg"
+---
+<section class="header-text">
+    <div>
+        <h1>MOMENTE DE NEUITAT</h1>
+        <p>Permiteti-ne sa va ajutam sa creati o zi cu adevarat de neuitat.</p>
+    </div>
+    <Image src={HeaderImage} width={2000} height={1500} alt="Servicii Fotograf Nunta Bucuresti Valentin Tapardea"/>
+</section>
+
+
+<section class="sections-wedding-wrapper">
+    <div class="sections-wedding-container">
+        <div class="section-wedding-text">
+            <Image src={inele} alt="iconita verighete"/>
+                <h3>Pregatirea mirilor</h3>
+                {
+                    mireAcasa.map((info)=>( 
+                        <ul>{info.text}</ul>
+                        <>
+                        {info.li.map((info)=>(
+                            <li>{info}</li>
+                        ))}
+                        </>
+                    ))
+                }
+        </div>
+        <Image class="left-margin" src={pregatireMire}  alt="Fotografie nunta - pregatire mire"/>
+    </div>
+</section>
+
+    <section class="text-between">
+        <div>
+            <h3>CUM VA DECURGE</h3>
+            <p>Fotograful va fi alături de voi de la primele ore ale zilei pentru a surprinde pregătirile – detaliile rochiei, machiajul miresei și emoțiile din timpul pregătirii costumului mirelui. Urmează întâlnirea voastră, fie într-un cadru special planificat, fie în cadrul tradițional, când mirele vine să-și ia mireasa.</p>
+        </div>
+     </section>
+
+<section class="sections-wedding-wrapper">
+    <div class="sections-wedding-container">
+        <Image class="right-margin" src={intalnireMiri}  alt="Fotografie nunta - pregatire mire"/>
+        <div class="section-wedding-text">
+            <Image src={miri} alt="iconita verighete"/>
+            <h3>Intalnirea mirilor</h3>
+            <p>Dacă se organizează un "first look" (momentul când mirele vede mireasa pentru prima dată înainte de ceremonie), fotograful va surprinde aceste reacții autentice.</p>
+            <p>În cazul tradițional, fotograful este prezent la momentul în care mirele vine să ia mireasa de acasă.</p>
+        </div>
+    </div>
+</section>
+
+<section class="text-between">
+    <div>
+        <p>
+            La biserică, vom surprinde momentele sacre ale cununiei religioase: schimbul de verighete, înconjurarea mesei și binecuvântările nașilor. După ceremonie, vom organiza fotografii de grup cu familia, nașii și invitații, urmate de o ședință foto creativă doar cu voi, într-o locație special aleasă.
+        </p>
+    </div>
+ </section>
+
+ <section class="sections-wedding-wrapper">
+    <div class="sections-wedding-container">
+        <div class="section-wedding-text">
+            <Image src={biserica} alt="iconita verighete"/>
+                <h3>Cununia religioasa</h3>
+                {
+                    bisericaText.map((info)=>( 
+                        <ul>{info.text}</ul>
+                        <>
+                        {info.li.map((info)=>(
+                            <li>{info}</li>
+                        ))}
+                        </>
+                    ))
+                }
+        </div>
+        <Image class="left-margin" src={mersBiserica}  alt="Fotografie nunta - pregatire mire"/>
+    </div>
+</section>
+
+<section class="text-between">
+    <div>
+        <p>
+            La petrecere, voi fi prezent la fiecare moment important – de la primirea invitaților cu pâine și sare, până la dansul mirilor și tăierea tortului. Voi surprinde spontaneitatea și bucuria invitaților pe ringul de dans, precum și tradițiile de la miezul nopții, cum ar fi scoaterea voalului sau furatul miresei.        </p>
+    </div>
+ </section>
+
+ <section class="sections-wedding-wrapper">
+    <div class="sections-wedding-container">
+        <Image class="right-margin" src={pozeGrup}  alt="Fotografie nunta - pregatire mire"/>
+        <div class="section-wedding-text">
+            <Image src={pozeMiri} alt="iconita verighete"/>
+            <h3>Fotografiile de grup</h3>
+            <p>
+                După ceremonia religioasă, fotograful organizează cadre cu familia, nașii și invitații.
+                </p>    
+                <p>
+                    Se pot face fotografii și cu biserica în fundal.
+                </p>
+        </div>
+    </div>
+</section>
+
+<section class="text-between">
+    <div>
+        <p>
+            Pe tot parcursul zilei, mă voi asigura că momentele voastre speciale sunt documentate cu naturalețe, astfel încât să aveți amintiri de neuitat! 
+        </p>
+    </div>
+ </section>
+
+ <section class="sections-wedding-wrapper">
+    <div class="sections-wedding-container">
+        <div class="section-wedding-text">
+            <Image src={inele} alt="iconita verighete"/>
+                <h3>Sedinta foto a mirilor</h3>
+                {
+                    sedintaFoto.map((info)=>( 
+                        <ul>{info.text}</ul>
+                        <>
+                        {info.li.map((info)=>(
+                            <li>{info}</li>
+                        ))}
+                        </>
+                    ))
+                }
+        </div>
+        <Image class="left-margin" src={pozaMiri}  alt="Fotografie nunta - pregatire mire"/>
+    </div>
+</section>
+
+
+<section class="text-between">
+    <div>
+        <p>
+            Pe tot parcursul zilei, mă voi asigura că momentele voastre speciale sunt documentate cu naturalețe, astfel încât să aveți amintiri de neuitat! 
+        </p>
+    </div>
+ </section>
+
+
+ <section class="sections-wedding-wrapper">
+    <div class="sections-wedding-container">
+        <Image class="right-margin" src={petrecere}  alt="Fotografie nunta - pregatire mire"/>
+        <div class="section-wedding-text">
+            <Image src={party} alt="iconita verighete"/>
+            <h3>Local</h3>
+            {
+                petrecereText.map((info)=>( 
+                    <ul>{info.text}</ul>
+                    <>
+                    {info.li.map((info)=>(
+                        <li>{info}</li>
+                    ))}
+                    </>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+    .header-text {
+        >div {
+            @include flex-center-col;
+            padding: 10rem 0;
+
+            >h1 {
+                @include header-playfair;
+                font-size: 7rem;
+                color: $font-color;
+
+            }
+
+            >p {
+                @include para-crimson;
+            }
+        }
+
+        >img {
+            aspect-ratio: 16/9;
+            height: 100svh;
+        }
+    }
+
+
+    .text-between {
+        @include max-width-1024;
+        margin-top: 8rem;
+
+        >div {
+            @include flex;
+            flex-direction: column;
+            max-width: 90rem;
+            margin: 0 auto;
+
+            >h3,p {
+            color: $font-color;
+            }
+
+            >h3 {
+            @include header-playfair;
+            font-size: 2.5rem;
+            }
+
+        >p {
+            @include para-crimson;
+        }
+        }
+    }
+
+    .right-margin {
+        margin-right: -5rem;
+    }
+
+    .sections-wedding-wrapper {
+        @include flex;
+    }
+
+    .sections-wedding-container {
+        @include flex-center;
+        @include max-width-1024;
+        margin-top: 8rem;
+        overflow: hidden;
+
+        >img {
+            width: 100%;
+            height: auto;
+            margin-left: -5rem;
+            z-index: -1;
+        }
+    }
+
+
+    .section-wedding-text {
+        position: relative;
+        width: 25rem;
+        padding: 4rem;
+        z-index: 1;
+        background-color: $white;
+
+        >img {
+            width: 10rem;
+            height: 10rem
+        }
+
+        >h3 {
+            @include header-playfair;
+            font-size: 2rem;
+        }
+
+        >ul,li {
+            @include para-crimson;
+            font-size: 1.2rem;
+        }
+
+        >ul {
+            font-size: 1.6rem;
+        }
+        >li {
+            margin-left: 2rem;
+        }
+    }
+
+</style>

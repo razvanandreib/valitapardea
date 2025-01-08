@@ -1,0 +1,85 @@
+---
+import { Image } from "astro:assets"
+
+import floare1 from "../assets/icons/flower.png"
+import floare2 from "../assets/icons/rose.png"
+import floare3 from "../assets/icons/rose2.png"
+import floare4 from "../assets/icons/leafs.png"
+
+let infoListText = [
+    {
+        image: floare3,
+        number: "12",
+        text: "Nunti pe an"
+    },
+    {
+        image: floare1,
+        number: "5 ani",
+        text: "De experienta"
+    },
+    {
+        image: floare2,
+        number: "15020",
+        text: "Fotografii"
+    },
+    {
+        image: floare4,
+        number: "5",
+        text: "Premii"
+    },
+]
+---
+<style lang="scss">
+@use "../styles/variables/index.scss" as *;
+
+
+
+.info-list-wrapper {
+    @include flex-center;
+    gap: 8rem;
+    padding: 0 0 4rem;
+}
+
+.info-list-card {
+    @include flex;
+    gap: 1rem;
+
+    > img { 
+        width: 10rem;
+        height: 10rem;
+        object-fit: contain;
+    }
+
+    &__text {
+        > p {
+            @include para-crimson;
+            font-size: 4rem;
+            font-weight: 200;
+        }
+        
+        > p:nth-of-type(2) {
+            font-size: 2rem;
+            font-style: italic;
+        }
+    }
+}
+
+
+
+</style>
+
+<section class="info-list-wrapper">
+    {
+        infoListText.map((info)=> (
+            <div class="info-list-card">
+                    <Image src={info.image} alt="temp"/>
+                <div class="info-list-card__text">
+                    <p>{info.number}</p>
+                    <p>{info.text}</p>
+                </div>
+            </div>
+        ))
+    }
+</section>
+
+

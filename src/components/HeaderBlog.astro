@@ -1,0 +1,47 @@
+---
+export interface Props {
+    titleHeader: string
+} 
+
+const {titleHeader} = Astro.props;
+---
+
+<section class="header-blog-wrapper">
+    <div class="header-blog-container">
+        <a href="/">Acasa</a>
+        <h1>{titleHeader}</h1>
+    </div>
+</section>
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+
+    .header-blog-wrapper {
+        @include flex-center;
+        background: url("../assets/background/green-background.png");
+        height: 25rem;
+        margin-bottom: 4rem;
+    }
+
+    .header-blog-container {
+        @include max-width-1024;
+        text-align: center;
+
+        
+        > a {
+            @include para-crimson;
+            font-size: 2rem
+        }
+        
+        > h1 {
+            @include header-playfair;
+            font-size: 4rem;
+        }
+
+        >a,h1 {
+            color: $white;
+            font-weight: 300;
+        }
+    }
+</style>

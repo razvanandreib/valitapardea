@@ -1,0 +1,165 @@
+---
+import { Image } from "astro:assets"
+
+import card1 from "../assets/first-page/card1.png"
+import card2 from "../assets/first-page/card2.png"
+import card3 from "../assets/first-page/card3.png"
+
+let cardsInfo = [
+    {
+    titlu: "Ana si Edi",
+    text: "O simfonie de dragoste din Bucuresti",
+    image: card1,
+    alt: `Fotografie nunta Ana si Edi`
+},    
+{
+    titlu: "Diana si Matei",
+    text: "A fost o zi care a redefinit dragostea",
+    image: card2,
+    alt: `Fotografie nunta Diana si Matei`
+},
+{
+    titlu: "Iulia si Bogdan",
+    text: "Aceasta poveste nu este doar iubire",
+    image:  card3,
+    alt: `Fotografie nunta Iulia si Bogdan`
+}
+]
+---
+
+
+<section class="portofoliu-wrapper">
+
+    <div class="portofoliu-container">
+        <div class="portofoliu-text">
+            <h3>Portofoliu</h3>
+            <p>Povesti <span>Selectate</span></p>
+            <p>Evenimente de neuitat, povesti spuse prin imagini</p>
+            <p>Am avut onoarea sa surprind momente unice la nunti pline de emotie, logodne intime, si aniversai speciale.</p>
+            <p>Fiecare eveniment a devenit o poveste  vizuala  cu amprenta mea personala</p>
+        </div>
+        <div class="portofoliu-cards">
+            {
+                cardsInfo.map((info)=>(
+                    <div class="cards">
+                        <h4>{info.titlu}</h4>
+                        <p>{info.text}</p>
+                        <Image src={info.image} alt={info.alt} />
+                    </div>
+                ))
+            }
+        </div>
+        <button>Portofoliu</button>
+    </div>
+</section>
+
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+    .portofoliu-wrapper {
+        @include flex-center-col;
+        padding: 4rem 0;
+    }
+
+    .portofoliu-container {
+        @include flex-center-col;
+
+        >button {
+            @include btn-default;
+            background-color: $grey;
+            margin-top: 4rem;
+        }
+    }
+
+    .portofoliu-text {
+        text-align: center;
+        padding: 0 2rem 6rem 2rem;
+
+        >h3 {
+            @include header-playfair;
+            font-size: 3rem;
+            font-weight: 300;
+        }
+
+        >p:nth-of-type(1) {
+            @include para-crimson;
+            font-size: 4rem;
+            font-weight: 500;
+            >span {
+                font-style: italic;
+            }
+        }
+
+        >p:nth-of-type(2) {
+            font-size: 2.2rem;
+        }
+
+        >p {
+            font-size: 1.6rem;
+        }
+    }
+
+    .portofoliu-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4rem;
+
+        .cards {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            display: flex;
+            border-radius: 0;
+
+            h4 {
+                @include header-playfair;
+                font-size: 2.2rem;
+                position: absolute;
+                bottom: 3rem;
+                width: 100%;
+                color: #fff;
+                margin: 0;
+                padding: 0 0 0 1.5rem;
+            }
+            
+            p {
+                @include para-crimson;
+                font-size: 1.4rem;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                color: #fff;
+                margin: 0;
+                padding: 0 0 1rem 1.5rem;
+            }
+            
+            img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.01),rgba(0, 0, 0, 0.05),rgba(0, 0, 0, 0.075), rgba(0, 0, 0, 0.75));
+                z-index: 1;
+            }
+
+            h4, p {
+                z-index: 2;
+            }
+        }
+
+    }
+
+</style>

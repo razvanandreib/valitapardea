@@ -1,0 +1,65 @@
+---
+import Navbar from "../../components/Navbar.astro"
+import FooterRedesign from "../../components/FooterRedesign.astro"
+import BaseLayout from "../../layouts/BaseLayout.astro"
+
+import { getCollection } from "astro:content";
+
+import "../../styles/components/article.scss"
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection("blog");
+
+  return allPosts.map((entry) => ({
+    params: {
+      slug: entry.slug,
+    },
+    props: {
+      entry,
+    },
+  }));
+}
+
+export const prerender = true;
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout>
+  <Navbar/>
+  <section class="article-wrapper">
+    <img src={entry.data.image} alt="" loading="eager">
+    <h1>{entry.data.title}</h1>
+    <p>{entry.data.publishedDate.toLocaleDateString("ro-RO")}</p>
+    <Content/>
+  </section>
+  <FooterRedesign/>
+</Navbar>
+
+
+<style lang="scss">
+  @use "../../styles/variables" as *;
+
+  .article-wrapper {
+    @include max-width-1024;
+
+    >img {
+      height: 40rem;
+      width: 100%;
+      object-fit: cover;
+      object-position: 50% 35%;
+    }
+
+
+    >h1 {
+      @include header-playfair;
+      font-size: 4rem;
+      font-weight: 100;
+    }
+
+    > p {
+      @include para-crimson;
+    }
+  }
+
+</style>

@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+import Navbar from "../../components/Navbar.astro";
+import FooterRedesign from "../../components/FooterRedesign.astro";
+import HeaderBlog from "../../components/HeaderBlog.astro"
+
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths({paginate}) {
+    const allPosts = await getCollection("blog");
+
+    const descPost = allPosts.sort(function(a,b){
+        a.title < b.title ? 1: -1;
+    })
+
+    return paginate(descPost, {
+        pageSize: 20,
+    })
+
+}
+
+
+const {page} = Astro.props;
+---
+
+<BaseLayout title="Blog" description="blog">
+    <Navbar/>
+    <HeaderBlog titleHeader="Blog"/>
+    <section class="articles-wrapper">
+        <div class="articles container">
+            {
+                page.data.map((info)=>(
+                        <div class="article">
+                            <img src={info.data.image} alt=""/>
+                            <div class="article__author-date">
+                                <p>{
+                                    info.data.publishedDate.toLocaleDateString("ro-RO")
+                                }</p>
+                                <p>{
+                                    info.data.autor
+                                }</p>
+                            </div>
+                            <a href={info.data.link}>{info.data.title}</a>
+                            <p>{
+                                info.data.description
+                            }</p>
+                            <a href={info.data.link}>Afla mai multe</a>
+                        </div>
+                    ))
+                }
+        </div>
+    </section>
+    <FooterRedesign/>
+</BaseLayout>
+
+
+<style lang="scss">
+    @use "../../styles/variables" as *;
+
+    .articles-wrapper {
+        @include flex-center;
+    }
+
+    .articles-container {
+        @include max-width-1024
+    }
+
+    .article {
+        @include flex;
+        @include para-crimson;
+        flex-direction: column;
+        gap: 1rem;
+        width: 60rem;
+        max-width: 100%;
+        margin-bottom: 4rem;
+        
+        >img {
+            height: 40rem;
+            object-fit: cover;
+            object-position: 50% 20%;
+        }
+
+        &__author-date {
+            @include flex;
+            gap: 2rem;
+
+            > p:nth-of-type(1) {
+                border-right: 1px solid $font-color;
+                padding: 0 2rem 0 0;
+            }
+        }
+
+        >a:nth-of-type(1) {
+            font-size: 2.5rem;
+        }
+
+        >a:nth-of-type(2) {
+            align-self: flex-end;
+        }
+    }
+</style>

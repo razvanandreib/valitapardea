@@ -1,0 +1,99 @@
+---
+import { Image } from "astro:assets";
+
+import testimoniale from "../assets/first-page/testimoniale.png"
+import googleLogo from "../assets/logo/google-logo.png"
+
+let testimonialeInfo = [
+    {
+    image: testimoniale,
+    alt: "Fotografii nunta Diana si Matei",
+    miri: "Diana si Matei",
+    text: `Am avut recent plăcerea de a lucra cu Valentin și pot  spune cu siguranță că este unul dintre cei mai talentați și pasionați  fotografi pe care i-am întâlnit vreodată. Experiența noastră cu el a  fost absolut fantastică și rezultatele au depășit cu mult așteptărilePe lângă talentul său artistic, am apreciat și profesionalismul său. A  fost mereu punctual, bine pregătit și deschis la sugestiile noastre. A  reușit să ne facă să ne simțim relaxați și confortabili în timpul  ședinței foto, ceea ce a contribuit la rezultatele extraordinare.Recomand cu încredere!`,
+    }
+]
+---
+
+<section class="testimoniale-wrapper">
+    {
+        testimonialeInfo.map((info)=> (
+        <div class="testimoniale-container">
+            <div class="testimoniale-image">
+                <Image src={info.image} alt={info.alt} height={500} width={500}/>
+            </div>
+            <div class="testimoniale-title-text">
+                <div class="testimoniale-title">
+                    <p>Ce spun clientii</p>
+                    <h6>testimoniale</h6>
+                </div>
+                <div class="testimoniale-text">
+                        <h5>{info.miri}</h5>
+                        <p>{info.text}</p>
+                    <div class="testimoniale-text__buttons">
+                        <a href="/">Galerie</a>
+                        <a href="/"><Image src={googleLogo} alt="logo Google" width={40} height={25}/>Recenzii</a>
+                    </div>
+                </div>
+             </div>
+        </div>
+        ))
+    }
+</section>
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+
+    .testimoniale-container {
+        @include flex-center;
+        @include max-width-1024;
+    }
+
+
+    .testimoniale-image {
+        width: 80rem;
+        max-width: 100%;
+        background-color: $grey;
+        padding: 4rem 0;
+
+        >img {
+            object-fit: contain;
+            width: 100%;
+        }
+    }
+
+    .testimoniale-title-text {
+        @include flex;
+        align-items: center;        
+        justify-content: space-around;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .testimoniale-text {
+        background-color: $grey;
+        padding: 0 4rem 0 0;
+
+        &__buttons {
+            @include flex;
+            justify-content: end;
+            gap: 2rem;
+            padding: 2rem ;
+
+            >a {
+                @include flex-center;
+                @include para-crimson;
+                font-size: 1.5rem;
+                width: 15rem;
+                background-color: $white;
+                padding: 1rem 0;
+                border-radius: 15px;
+
+                >img {
+                object-fit: contain;
+                }
+            }
+            
+        }
+    }
+</style>

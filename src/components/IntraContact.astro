@@ -1,0 +1,241 @@
+---
+import { Image } from "astro:assets"
+
+import transforma from "../assets/serv-page/serv-text.png"
+import personala from "../assets/serv-page/serv-call-to-action.png"
+
+let cardInfo = [
+    {
+        title: "Studio",
+        text: [
+            {
+                href:"https://www.google.ro/maps/place/Strada+Poiana+Florilor+15,+Bucure%C8%99ti+030167/@44.4232587,26.0888481,17z/data=!3m1!4b1!4m10!1m2!2m1!1sStrada+Florilor,+Nr.+15,+Sector+3,+Bucure%C8%99ti,+Rom%C3%A2nia!3m6!1s0x40b1ff12ee3dd48d:0x1b5fd42f8603bc4a!8m2!3d44.423255!4d26.093719!15sCjdTdHJhZGEgRmxvcmlsb3IsIE5yLiAxNSwgU2VjdG9yIDMsIEJ1Y3VyZciZdGksIFJvbcOibmlhkgEQZ2VvY29kZWRfYWRkcmVzc-ABAA!16s%2Fg%2F11c5mqq5r1?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D",
+                hrefText: "Strada Florilor, Nr. 15, Sector 3, București, România"
+            }]
+},
+{
+        title: "Urmareste-ma",
+        text: [
+            {
+            href: "",
+            hrefText: "@valentintapardea"
+        },
+        {
+            href: "",
+            hrefText: "@valentintapardea"
+        }
+
+    ]
+},
+{
+        title: "Intra in contact",
+        text: [
+            {
+                href:"+40724216334",
+                hrefText : "+40724216334"
+            },
+            {
+                href:"valentintapardea@gmail.com",
+                hrefText : "valentintapardea@gmail.com"
+            },
+        ]
+},
+]
+---
+
+<section class="intra-contact-wrapper">
+    <div class="intra-contact-container">
+        <div class="intra-contact-text">
+            <h4>INTRA IN CONTACT</h4>
+            <p>
+                „De la decor la catering, divertisment și servicii de transport, ne străduim să transformăm ziua nunții tale exact așa cum o visezi. Permite-ne să te ajutăm să creezi o zi de neuitat.”
+            </p>
+        </div>
+        <div class="intra-contact-cards ">
+        {
+            cardInfo.map((info)=>(
+            <div class="card">
+                <h5>
+                    {info.title}
+                </h5>
+                {
+                    info.text.map((info)=>(
+                        <a href={info.href}>
+                            {info.hrefText}
+                        </a>
+                    ))
+                }          
+            </div>
+            ))
+        }
+        </div>
+    
+    </div>
+</section>
+
+<section class="transforma-wrapper">
+    <div class="transforma-container">
+        <div class="transforma-text">
+            <h6>Transforma-ti Visul, In Realitate</h6>
+            <p>Fotografii de Nunta care spun povestea iubirii</p>
+        </div>
+        <div class="transforma-image">
+            <Image src={transforma} alt="transforma visul in realitate"/>
+        </div>
+    </div>
+</section>
+
+<section class="nota-personala-wrapper">
+    <div class="nota-personala-container">
+        <div class="nota-personala-text">
+            <h6>Fotografii Cu O Nota Personala</h6>
+            <a href="/rezerva">Rezerva</a>
+        </div>
+    </div>
+</section>
+
+
+
+<style lang="scss">
+@use "../styles/variables" as *;
+
+.intra-contact-wrapper {
+    padding: 8rem 0;
+}
+
+.intra-contact-container {
+    @include max-width-1024;
+}
+
+.transforma-container{
+    @include flex;
+    @include max-width-1024;
+    background-color: $white;
+}
+
+.transforma-image, .transforma-text {
+    max-width: 100%;
+    width: 51.2rem;
+}
+
+.transforma-image {
+   
+    >img {
+        object-fit: cover;
+        width: 100%;
+        height: 50rem;
+    }
+}
+
+
+.transforma-text {
+    @include flex-center-col;
+    text-align: center;
+
+    >h6,p {
+        color: $font-color;
+    }
+
+    >h6 {
+        @include header-playfair;
+        font-size: 4rem;
+    }
+
+    >p {
+        @include para-crimson;
+    }
+}
+
+.intra-contact-text {
+    @include flex-center-col;
+    padding: 0 0 4rem 0;
+    gap: 2rem;
+    text-align: center;
+
+    >h4,p {
+        color: $font-color;
+    }
+
+    >h4 {
+        @include header-playfair;
+        font-size: 3.5rem;
+    }
+
+    >p {
+        @include para-crimson;
+        font-size: 1.6rem;
+        max-width: 80ch;
+    }
+}
+
+.intra-contact-cards {
+    @include flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card{
+    @include flex-just-center;
+    flex-direction: column;
+    gap: 2rem;
+    width: 30rem;
+    height: 30rem;
+    background-color: $white;
+
+        color: $font-color;
+    >h5,a {
+        color: $font-color;
+        text-align: center;
+        padding: 0 2rem;
+    }
+
+    > h5 {
+        @include header-playfair;
+        font-size: 3rem;
+    }
+
+    >a {
+        @include para-crimson;
+        font-size: 1.4rem;
+    }
+}
+
+
+.nota-personala-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-image: url("../assets/serv-page/serv-call-to-action.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50rem;
+    display: flex;
+}
+
+.nota-personala-text {
+    margin-right: 10rem;
+    @include flex-center-col;
+
+    > h6 {
+        @include header-playfair;
+        font-size: 5rem;
+        width: 20ch;
+    }
+    
+    > a{
+        @include para-crimson;
+        font-size: 2.5rem;    
+        margin-top: 5rem;
+    }
+
+    >h6,a{
+        color: $white;
+        text-align: center;
+    }
+
+}
+
+
+
+</style>

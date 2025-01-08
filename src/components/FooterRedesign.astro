@@ -1,0 +1,94 @@
+---
+import { Image } from "astro:assets";
+
+import logo from "../assets/logo/logo.png"
+
+let linksFooter = [
+    {
+        link: "/blog",
+        text: "Blog"
+    },
+    {
+        link: "/despre",
+        text: "Despre mine"
+    },
+    {
+        link: "/galerie",
+        text: "Galerie"
+    },
+    {
+        link: "/servicii",
+        text: "Fotograf Nunta"
+    },
+]
+
+let politici = [
+{
+        link: "/politica-confidentialitate",
+        text: "Politica confidentialitate"
+    },
+    {
+        link: "/politica-cookies",
+        text: "Politica cookies"
+    },
+    {
+        link: "/termeni-si-conditii",
+        text: "Termeni si conditii"
+    },
+
+]
+---
+
+<footer class="footer">
+    <Image src={logo} alt="Fotograf nunta bucuresti Valentin Tapardea"/>    
+    <div class="footer-links">
+        {
+            linksFooter.map((info)=> (
+                <>
+                    <a href={info.link}>{info.text}</a>
+                </>
+            ))
+        }
+
+    </div>
+    <div class="footer-politici">
+        {
+            politici.map((info)=> (
+                <>
+                    <a href={info.link}>{info.text}</a>
+                </>
+            ))
+        }
+
+    </div>
+
+</footer>
+
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+    .footer {
+        @include flex-center-col;
+
+        >img {
+            width: 30rem;
+            height: 7.5rem;
+            padding: 4rem 0;
+        }
+   }
+
+
+.footer-links, .footer-politici {
+    @include flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+
+    >a {
+        @include para-crimson;
+    }
+}
+
+</style>

@@ -1,0 +1,152 @@
+---
+import { Image } from "astro:assets";
+
+import despreExperience from "../assets/despre-page/despre-experience.png";
+import despreContactUp from "../assets/despre-page/despre-contact-up.png";
+
+---
+
+<section class="experience-wrapper">
+    <div class="experience-container">
+            <div class="experience-independent">
+                <div class="experience-independent__text">
+                    <h3>FOTOGRAF INDEPENDENT</h3>
+                    <h3>OSPTILALITATEA FUNCTIONEAZA IN FAMILIE</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus sint sapiente eveniet doloremque atque eaque alias libero quo at laudantium dolorem totam distinctio, expedita ut aspernatur dolor sit voluptatibus pariatur?</p>
+                    <a href="/contact">CONTACT</a>
+                </div>
+                <div class="experience-independent__image">
+                    <Image src={despreContactUp} alt="despre"/>
+                </div>
+
+            </div>
+            <div class="experience-authentic">
+                <div class="experience-authentic__image">
+                    <Image src={despreExperience} alt="despre"/>
+                </div>
+                <div class="experience-authentic__text">
+                    <h3>O EXPERIENTE CU ADEVARAT AUTENTICA</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur accusantium veniam assumenda praesentium iure? At labore asperiores, tenetur laudantium fuga placeat! Laudantium commodi quaerat vitae cum aliquid at nam, tenetur voluptatum iusto quasi hic eum a beatae ullam magnam suscipit vero fugiat alias porro. Quod officiis magnam harum unde in.</p>
+                    <div class="experience-buttons">
+                        <a href="/servicii">SERVICII</a>
+                        <a href="/contact">CONTACT</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+    .experience-wrapper {
+        @include flex-center;
+
+        .experience-container {
+            @include max-width-1024;
+        }
+    }
+
+
+    .experience-independent {
+        @include flex;
+        gap: 2rem;
+        padding: 0 0 4rem 0;
+
+        @media(max-width: 600px) {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &__text {
+            @include flex-center-col;
+            max-width: 40rem;
+            width: calc(100% - 4rem);
+            gap: 2rem;
+            padding: 0 2rem;
+
+
+            >h3 {
+                @include header-playfair;
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            > p {
+                @include para-crimson;
+            }
+
+            >a {
+                align-self: flex-start;
+                @include para-crimson;
+                border-left: 1px solid $font-color;
+                padding: 0 0 0 2rem;
+            }
+        }
+
+        &__image {
+            >img {
+                object-fit: cover;
+            }
+        }
+    }
+
+    .experience-authentic {
+        @include flex;
+        gap: 2rem;
+        padding: 0 0 4rem 0;
+
+        @media(max-width: 600px) {
+            flex-direction: column-reverse;
+            align-items: center;
+        }
+
+        &__text {
+            @include flex-center-col;
+            max-width: 40rem;
+            width: calc(100% - 4rem);
+            gap: 2rem;
+            padding: 0 2rem;
+
+            >h3 {
+                @include header-playfair;
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            > p {
+                @include para-crimson;
+            }
+
+            >a {
+                align-self: flex-start;
+                @include para-crimson;
+                border-left: 1px solid $font-color;
+                padding: 0 0 0 2rem;
+            }
+
+        }
+
+        &__image {
+            >img {
+                object-fit: cover;
+            }
+        }
+
+    }
+
+
+.experience-buttons {
+    @include flex-center-col;
+    gap: 2rem;
+    width: 100%;
+
+    > a {
+        @include para-crimson;
+        align-self: self-start;
+        border-bottom: 1px solid $font-color;
+        width: 100%;
+    }
+}
+</style>

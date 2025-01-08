@@ -1,0 +1,66 @@
+---
+import Image from "astro:assets";
+
+---
+
+<header class="header-wrapper">
+    <div class="header-container">
+        <div class="header-text">
+            <h1>Esti gata sa iti spun povestea?</h1>
+            <p>Fiecare poveste de dragoste merita sa fie imortalizata cu emotie</p>
+            <p>Hai sa transformam momentele tale in amintiri de neuitat, cu fotografii care reflecta cine esti cu adevarat.</p>
+        </div>
+        <button class="btn">Rezerva Data</button>
+    </div>
+</header>
+
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+    .header-wrapper {
+        @include flex-center;
+        background: linear-gradient(#66666635,#00000045,#00000050), url("../assets/first-page/header-f-page.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100svh;
+    }
+
+    .header-container {
+        @include flex-center;
+        flex-direction: column;
+        gap:2rem;
+        padding: 0 2rem;
+
+        >button {
+            @include btn-default;
+        }
+    }
+
+    .header-text {
+        @include flex-center;
+        flex-direction: column;
+        gap: 2rem;
+
+        >h1, p {
+            color: #FFFFFF;
+        }
+
+        >h1 {
+            @include header-playfair;
+            font-size: 5rem;
+            text-align: center;
+        }
+
+        >p {
+            @include para-playfair;
+            font-size: 2rem;
+            font-style: italic;
+            max-width: 65ch;
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+</style>

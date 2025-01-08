@@ -1,0 +1,14 @@
+@use "../variables" as *;
+
+
+li,p,ul,ol {
+    @include para-crimson;
+    font-size: 1.6rem;
+    margin-left: 2rem;
+}
+
+h2 {
+    @include header-playfair;
+    font-size: 2.5rem;
+    margin-top: 2rem;
+}

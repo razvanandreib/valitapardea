@@ -1,0 +1,79 @@
+---
+import Image from "astro/components/Image.astro";
+import telefon from "../assets/icons/phone-white.svg";
+---
+
+<section class="contact-wrapper">
+    <div class="contact-container">
+        <div class="contact-text">
+            <p>NU STII DE UNDE SA INCEPI</p>
+            <p>INTRA IN CONTACT</p>
+        </div>
+        <div class="contact-telefon">
+            <a href="tel:0724216334"><Image src={telefon} alt="iconita telefon"/> 0724216334</a>
+        </div>
+    </div>
+</section>
+
+
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+
+    .contact-wrapper {
+        background: url("../assets/background/green-background.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 10rem 0;
+        padding: 15rem 0;
+    }
+
+
+    .contact-container {
+        @include max-width-1024;
+        @include flex;
+        justify-content: space-around;
+        align-items: center;
+        width: calc(100% - 4rem);
+        padding: 0 2rem;
+
+        @media(max-width:600px) {
+            flex-direction: column;
+            gap: 4rem;
+        }
+    }
+
+    .contact-text {
+
+        >p {
+            @include para-crimson;
+            font-size: 3rem;
+        }
+    }
+
+    .contact-telefon {
+        > a {
+            @include flex;
+            @include para-crimson;
+            font-size: 2.5rem;
+            gap: 2rem;
+            align-items: center;
+            border: 1px solid $white;
+            padding: 1rem 2rem;
+            color: $white;
+
+            > img {
+            width: 3rem;
+            height: 3rem;
+            }
+        }
+    }
+
+    .contact-text {
+        >a,p {
+            color: $white;
+        }
+    }
+
+</style>

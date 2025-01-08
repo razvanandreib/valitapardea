@@ -1,0 +1,149 @@
+---
+import { Image } from "astro:assets"
+
+import home from "../assets/icons/home.svg"
+import phone from "../assets/icons/phone.svg"
+import email from "../assets/icons/email.svg"
+import heart from "../assets/icons/heart.svg"
+
+let infoText = [ 
+{
+        icon: home,
+        alt: "iconia adresa",
+        title: "ADRESA",
+        text: "Soseaua Oltenitei .....",
+    },
+    {
+        icon: phone,
+        alt: "iconia telefon",
+        title: "SUNA",
+        text: "0724216334",
+    },
+    {
+        icon: email,
+        alt: "iconia email",
+        title: "E-MAIL",
+        text: "valentintapardea@gmail.com",
+    },
+    {
+        icon: heart,
+        alt: "iconia sociale",
+        title: "URMARESTE-MA",
+        text: [""],
+    }
+]
+---
+
+<section class="contact-wrapper">
+    <div class="contact-container">
+            <div class="contact">
+                <h2>Suna, E-mail sau Da-ne un mesaj</h2>
+                {
+                    infoText.map((info)=>(
+                        <div class="contact__info">
+                            <Image src={info.icon} alt={info.alt}/>
+                            <div>
+                                <p>{info.title}</p>
+                                <p>{info.text}</p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+            <div class="contact-form">
+                <form action="https://formsubmit.co/your@email.com" method="POST">
+                    <p>Numes si prenume</p>
+                    <input type="text" name="name" placeholder="Nume si prenume" required>
+                    <p>Adresa de e-mail</p>
+                    <input type="email" name="email" placeholder="E-mail" required>
+                    <p>Numar de telefon</p>
+                    <input type="phone" name="phone" placeholder="Numar de telefon" required>
+                    <button type="submit">Trimite</button>
+               </form> 
+            </div>
+    </div>
+</section>
+
+
+<section class="contact-maps">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2850.3957132648275!2d26.213510475973173!3d44.40452500351515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1fc665086c429%3A0x4550d8658906c1ae!2sStrada%20Florilor%2015%2C%20C%C4%83%C8%9Belu%20077106!5e0!3m2!1sen!2sro!4v1736243478609!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+
+    .contact-wrapper {
+        @include flex-center;
+        flex-direction: column;
+        padding: 10rem 0;
+    }
+
+    .contact-container {
+        @include max-width-1024;
+        @include flex;
+        justify-content: space-between;
+    }
+
+
+    .contact {
+        @include flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        >h2 {
+            @include header-playfair;
+            font-size: 3rem;
+            color: $font-color;
+        }
+        &__info {
+            @include flex;
+            gap: 2rem;
+
+            > img {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            
+            > div {
+                > p {
+                    @include para-crimson;
+                                }
+            }
+        }
+    }
+
+
+    .contact-form {
+        > form,input {
+            all: unset;
+            @include para-crimson;
+        }
+
+        >form {
+            width: 40rem;
+            max-width: 100%;
+            @include flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            
+            >input {
+                border-bottom: 1px solid $font-color;
+            }
+            
+            >button {
+                all: unset;
+                @include para-crimson;
+                border-left: 1px solid $font-color;
+                padding: 0 0 0 2rem;
+            }
+        }
+    }
+
+    .contact-maps {
+        >iframe {
+            width: 100%;
+        }
+    }
+</style>

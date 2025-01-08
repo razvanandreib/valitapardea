@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+
+import HeaderImage from "../assets/imagini/first-page/header-first-page.jpg"
+---
+
+<section class="header-wrapper">
+    <div class="header">    
+        <Image src={HeaderImage} width={5000} height={5000} alt="Proaspat casatoriti"/>
+        <div class="header__text">
+            <h1>Fotografii care iti spun povestea</h1>
+            <p>Rezervă data acum</p>
+        </div>
+    </div>
+
+</section>
+
+
+<style lang="scss">
+    @use "../styles/variables/index.scss" as *;
+
+
+    .header {
+        position: relative;
+        padding: 0 4rem;
+
+        &__text {
+            @include flex-center;
+            flex-direction: column;
+            position: absolute;
+            inset: 0;
+
+            > h1 {
+                @include headers;
+                color: $white;
+                font-family: 'Cormorant', serif;
+                font-weight: 200;
+                font-size: 5rem;
+            }
+
+            > p  {
+                @include para-crimson;
+                color: $white;
+                letter-spacing: 0.5rem;
+                font-size: 2rem;
+                margin-top: 0rem;
+            }
+        }
+
+        > img {
+        width: 100%;
+        height: auto;
+        }
+}
+    
+</style>

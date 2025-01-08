@@ -1,0 +1,107 @@
+---
+import {Image} from "astro:assets";
+
+import firstCarouselCard from "../assets/imagini/first-page/first-page-carousel-card.jpg";
+import secondCarouselCard from "../assets/imagini/first-page/first-page-carousel-card.jpg";
+import flower from "../assets/icons/rose.png"
+---
+
+<section class="featured-wrapper">
+        <div class="feature-slider">
+            <h4>
+                <span>SELECTII</span>
+                <span>POVESTI DE VIS</span>
+            </h4>
+            <div class="feature">
+                <div class="feature__image">
+                    <Image src={firstCarouselCard} alt="Imagine nunta 1"/>
+                </div>
+                <div class="feature__text">
+                    <Image src={flower} width={100} height={100} alt="iconita fluture"/>
+                    <h3>Ana si Razvan</h3>
+                    <p>Nunta pe mare</p>
+                    <a href="">Vezi mai multe</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<style lang="scss">
+    @use "../styles/variables/index.scss" as *;
+
+    .feature-slider {
+        @include flex-center;
+        flex-direction: column;
+
+        > h4 {
+            @include flex-center;
+            flex-direction: column;
+            padding: 8rem 0;
+
+            >span:nth-of-type(1) {
+                @include header-cormorant;
+                font-size: 2rem;
+                letter-spacing: .5rem;
+            }
+
+            >span:nth-of-type(2) {
+                @include headers;
+                font-size: 7rem;
+                letter-spacing: 1rem;
+            }
+
+        }
+    }
+
+    .feature {
+        @include flex-align-center;
+        position: relative;
+        margin: 0 auto;
+        width: 80%;
+
+        &__image {
+            
+            > img {
+                width: 83.6em;
+                height: 46.6rem;
+                object-fit: cover;
+            }
+        }
+
+        &__text {
+            @include flex-center;
+            flex-direction: column;
+            gap: 2rem;
+            position: absolute;
+            right: 0;
+            background-color: $grey-card-back;
+            height: 35.9rem;
+            max-width: 58rem;
+            width: 100%;
+            
+            > h3,p,a {
+                color : #8c857a;
+            }
+
+            >h3 {
+                @include header-cormorant;
+            }
+
+            > p, a {
+                @include para-crimson;
+            }
+
+            >a {
+                border-bottom: 1px solid #8c857a;
+            }
+
+            >img {
+                width: 10rem;
+                height: 10rem;
+            }
+        }
+    }
+</style>
+

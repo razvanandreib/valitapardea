@@ -1,0 +1,166 @@
+---
+import { Image } from "astro:assets";
+
+//images
+import headerDespre from "../assets/despre-page/despre-header.png";
+import headerLeft from "../assets/despre-page/despre-header-left.png"
+import headerRight from "../assets/despre-page/despre-header-right.png"
+
+---
+
+<section class="header-despre-wrapper">
+    <div class="header-despre-container">
+        <div class="header-despre">
+            <p>Despre</p>
+            <h1>PEISAJE DE NEEGALAT</h1>
+            <h2>EXPERIENTA DE NEUITAT</h2>
+        </div>
+        <div class="header-despre-presentation">
+            <div class="header-despre-presentation__image-left">
+                <Image src={headerLeft} alt="Fotografii nunta"/>                
+            </div>
+            <div class="header-despre-presentation__text">
+                <p>
+                    For more than 20 years we have helped couples bring to life their dreams.  We take pride in providing best service from the planning to the “I  dos”. Make sure to contact us to make your wedding dream come to life.
+                    It’s a pleasure for us to open our gates to you and to create an unforgettable experience on your wedding day.
+                </p>
+                <div class="buttons-despre">
+                    <a href="/contact">CONTACT</a>
+                    <a href="/#">MAI MULTE</a>
+                </div>
+            </div>
+            <div class="header-despre-presentation__image-right">
+                <Image src={headerRight} alt="Fotografii nunta"/>                
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss">
+    @use "../styles/variables" as *;
+
+    .header-despre-wrapper {
+        @include flex-center;
+    }
+
+    .header-despre-container {
+        width: 100%;
+
+        .header-despre {
+            @include flex-center-col;
+            height: 80rem;
+            background-image: url("../assets/despre-page/despre-header.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            width: 100%;    
+
+            >p,h1,h2 {
+                @include text-shadow;
+            }
+            
+            >p {
+                @include para-crimson;
+                font-size: 2rem;
+            }
+            
+            > h1,h2 {
+                @include header-playfair;
+                font-weight: 200;
+                text-align: center;
+            }
+
+            >h1 {
+                font-size: 3rem;
+            }
+
+            >h2 {
+                font-size: clamp(3.2rem, 2vw + 1rem, 4.5rem);
+            }
+
+            >p,h1,h2 {
+                color: $white;
+            }
+
+        }
+    }
+
+    .header-despre-presentation {
+        @include flex-center;
+        align-items: end;
+
+        @media(max-width:600px) {
+            flex-direction: column;
+            margin-top: 4rem;
+        }
+
+        &__image-left {
+            margin-top: -10rem;
+
+            @media(max-width:600px) {
+                margin-top: 0;
+                width: 100%;
+
+                >img {
+                    width: 100%;
+                }
+            }
+
+            >img {
+              object-fit: cover;
+              object-position: center;
+            }
+        }
+
+        &__image-right {
+            >img {
+              object-fit: cover;
+              object-position: center;
+            }
+
+            @media(max-width:600px) {
+                width: 100%;
+
+                >img {
+                    width: 100%;
+                }
+            }
+        }
+
+        &__text {
+            width: 40rem;
+            padding: 2rem 4rem;
+
+            @media(max-width:600px) {
+                width: calc(100% - 4rem);
+                padding: 2rem 2rem;
+            }
+
+            >p {
+                @include para-crimson;
+            }
+
+            >.buttons-despre {
+                @include flex;
+                justify-content: space-around;
+                gap: 2rem;
+                padding: 4rem 0;
+
+                @media(max-width:985px) {
+                    flex-wrap: wrap;
+                }
+
+                >a{
+                    @include para-crimson;
+                    border: 1px solid $grey-light;
+                    padding: 1rem 2.5rem;
+                }
+
+                >a:nth-of-type(2) {
+                    border: none;
+                }
+            }
+        }
+    }
+
+</style>

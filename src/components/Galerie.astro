@@ -1,0 +1,204 @@
+---
+---
+
+<div class="gallery"></div>
+
+<div class="lightbox">
+    <button class="close">X</button>
+    <button class="prev">&lt;</button>
+    <img src="" alt="">
+    <button class="next">&gt;</button>
+</div>
+
+
+<style lang="scss">
+@use "../styles/variables" as *;
+
+//* CSS for the gallery */
+.gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Space between items */
+            justify-content: flex-start; /* Align items to the left */
+            align-items: flex-start; /* Align items to the top */
+        }
+
+        .gallery .portrait-group {
+            display: flex;
+            flex-direction: column;
+            flex: 0 0 calc(50% - 10px); /* Two portrait images occupy half the container width together */
+            gap: 10px; /* Space between portrait images in the group */
+        }
+
+        .gallery img {
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease; /* Optional hover effect */
+        }
+
+        .gallery img.landscape {
+            flex: 0 0 calc(50% - 10px); /* Landscape image occupies half the container width */
+        }
+
+        .gallery img.portrait {
+            flex: 1; /* Portrait images share space inside the portrait group */
+            height: auto; /* Ensure proper scaling */
+        }
+
+        /* Optional hover effect */
+        .gallery img:hover {
+            transform: scale(1.05);
+            z-index: 1;
+        }
+
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox .close,
+        .lightbox .prev,
+        .lightbox .next {
+            position: absolute;
+            top: 50%;
+            color: white;
+            font-size: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .lightbox .close {
+            top: 10%;
+            right: 5%;
+        }
+
+        .lightbox .prev {
+            left: 5%;
+            transform: translateY(-50%);
+        }
+
+        .lightbox .next {
+            right: 5%;
+            transform: translateY(-50%);
+        }
+</style>
+
+
+
+<script >
+   const images = Object.entries(
+            import.meta.glob(
+                "/src/assets/galerie/Ana-si-Edi/galerie/*.{png,jpg,jpeg,gif,JPG}",
+                { eager: true }
+            )
+        ).map(([path, module], index) => ({
+            src: path.replace("../assets", "/assets"), // Adjust to match public path
+            alt: `Gallery Image ${index + 1}`,
+        }));
+
+        const gallery = document.querySelector('.gallery');
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImage = lightbox.querySelector('img');
+        const prevButton = lightbox.querySelector('.prev');
+        const nextButton = lightbox.querySelector('.next');
+        const closeButton = lightbox.querySelector('.close');
+
+        let currentIndex = 0;
+        let portraitBuffer = []; // Temporary buffer for portrait images
+
+        // Add images to the gallery
+        images.forEach(({ src, alt }, index) => {
+            const img = new Image();
+            img.src = src;
+            img.alt = alt;
+            img.dataset.index = index;
+
+            img.onload = () => {
+                if (img.naturalWidth > img.naturalHeight) {
+                    img.classList.add('landscape');
+                    flushPortraitBuffer();
+                    gallery.appendChild(img);
+                } else {
+                    img.classList.add('portrait');
+                    portraitBuffer.push(img);
+
+                    // Add portrait group when there are 2 portraits
+                    if (portraitBuffer.length === 2) {
+                        const group = document.createElement('div');
+                        group.classList.add('portrait-group');
+                        portraitBuffer.forEach(p => group.appendChild(p));
+                        gallery.appendChild(group);
+                        portraitBuffer = []; // Clear buffer
+                    }
+                }
+            };
+
+            img.onerror = () => {
+                console.error(`Failed to load image: ${src}`);
+            };
+        });
+
+        // Flush remaining portraits in the buffer
+        function flushPortraitBuffer() {
+            if (portraitBuffer.length) {
+                portraitBuffer.forEach(p => gallery.appendChild(p));
+                portraitBuffer = [];
+            }
+        }
+
+        // Show lightbox
+        gallery.addEventListener('click', (e) => {
+            if (e.target.tagName === 'IMG') {
+                currentIndex = parseInt(e.target.dataset.index, 10);
+                showLightbox();
+            }
+        });
+
+        // Update lightbox image
+        function showLightbox() {
+            const { src, alt } = images[currentIndex];
+            lightboxImage.src = src;
+            lightboxImage.alt = alt;
+            lightbox.style.display = 'flex';
+        }
+
+        // Hide lightbox
+        closeButton.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+
+        // Navigate to the previous image
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showLightbox();
+        });
+
+        // Navigate to the next image
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            showLightbox();
+        });
+
+        // Close lightbox on clicking outside the image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+    </script>
+    

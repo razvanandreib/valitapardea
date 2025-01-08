@@ -1,0 +1,137 @@
+---
+import { Image } from "astro:assets";
+
+import valiTapardea from "../assets/imagini/vali/valentin-tapardea.jpg"
+import valiTapardea2 from "../assets/imagini/vali/valiTapardea.jpg"
+---
+
+<section class="about">
+    <div class="about__header">
+        <p>Despre</p>
+        <h4>VALENTIN TAPARDEA</h4>
+    </div>
+    <div class="about__presentation">
+        <div class="about__presentation-imageLeft">
+            <Image src={valiTapardea} alt="Valentin Tapardea"/>
+        </div>
+        <div class="about__presentation-text">
+            <h5>Salut</h5>
+                <p>
+                    Sunt Valentin Tapardea, fotograf de nuntă, lifestyle și portret, pasionat de crearea unor imagini care spun povești autentice. 
+                </p>
+                <p>
+                    În fiecare cadru, caut să surprind esența momentului, naturalețea și emoția, folosind lumină naturală și peisaje exterioare pentru a reda atmosfera ușoară și vibrantă a clipelor voastre. Dacă visul vostru este să păstrați amintiri care vorbesc de la sine, hai să le creăm împreună!
+                </p>
+           <div class="about__presentation-text__links">
+            <a href="">INTRA IN CONTACT</a>
+            <a href="">VEZI MAI MULTE</a>
+           </div>
+        </div>
+        <div class="about__presentation-imageRight">
+            <Image src={valiTapardea2} alt="Valentin Tapardea"/>
+        </div>
+    </div>
+</section>
+
+
+<style lang="scss">
+    @use "../styles/variables/index.scss" as *;
+
+    .about {
+        @include flex;
+        flex-direction: column;
+        margin: 0 auto;
+        padding: 10rem 0;
+        
+        
+        &__header {
+            text-align: center;
+            
+            > p {
+                @include para-crimson;
+                font-size: 2rem;
+            }
+            
+            > h4 {
+                @include para-cormorant;
+                font-size: 4rem;
+                font-weight: 400;
+                margin-bottom: 4rem;
+            }
+        }
+        
+        &__presentation {
+            @include flex-center;
+            margin: 0 auto;
+            width: 80%;
+            background-color: $grey-card-back;
+        }
+
+        &__presentation-imageLeft {
+            > img {
+                width: 55rem;
+                height: 50rem;
+                aspect-ratio: 3/4;
+            }
+        }
+
+
+        &__presentation-imageRight {
+            padding: 2rem 4rem;
+
+            > img {
+                width: 45rem;
+                height: 30rem;
+                aspect-ratio: 3/4;
+            }
+        }
+
+
+        &__presentation-text {
+            @include flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 0 5rem;
+            text-align: center;
+            width: calc(100% - 50rem);
+
+            >h5 {
+                @include headers;
+                font-size: 10rem;
+                font-weight: 100;
+            }
+
+            > p {
+                @include para-crimson;
+            }
+            
+                &__links {
+                    @include flex-center;
+                    gap: 2rem;
+                    margin-top: 2rem;
+                    
+                    >a {
+                        @include para-crimson;
+                        font-size: 1.3rem;
+                        transition: border 300ms ease;
+                        padding: 1.5rem 2rem;   
+                    }
+
+                    > a:nth-of-type(1){
+                        border: 1px solid $font-color;
+                     }
+
+                    >a:nth-of-type(1):hover {
+                        border: 1px solid $greys-back;
+                    }
+                    
+                    >a:nth-of-type(2):hover {
+                        border-bottom: 1px solid $font-color;
+                    }
+                }
+        }
+    }
+
+</style>
+
+
