@@ -4,13 +4,27 @@ import { Image } from "astro:assets";
 import testimoniale from "../assets/first-page/testimoniale.png"
 import googleLogo from "../assets/logo/google-logo.png"
 
+//import icons
+import sageataDreapta from "../assets/icons/sageata-dreapta.svg"
+import sageataStanga from "../assets/icons/sageata-stanga.svg"
+
 let testimonialeInfo = [
     {
     image: testimoniale,
     alt: "Fotografii nunta Diana si Matei",
     miri: "Diana si Matei",
     text: `Am avut recent plăcerea de a lucra cu Valentin și pot  spune cu siguranță că este unul dintre cei mai talentați și pasionați  fotografi pe care i-am întâlnit vreodată. Experiența noastră cu el a  fost absolut fantastică și rezultatele au depășit cu mult așteptărilePe lângă talentul său artistic, am apreciat și profesionalismul său. A  fost mereu punctual, bine pregătit și deschis la sugestiile noastre. A  reușit să ne facă să ne simțim relaxați și confortabili în timpul  ședinței foto, ceea ce a contribuit la rezultatele extraordinare.Recomand cu încredere!`,
-    }
+    }, {
+    image: testimoniale,
+    alt: "Fotografii nunta Diana si Matei",
+    miri: "Stafan",
+    text: `Am avut recent plăcerea de a lucra cu Valentin și pot  spune cu siguranță că este unul dintre cei mai talentați și pasionați  fotografi pe care i-am întâlnit vreodată. Experiența noastră cu el a  fost absolut fantastică și rezultatele au depășit cu mult așteptărilePe lângă talentul său artistic, am apreciat și profesionalismul său. A  fost mereu punctual, bine pregătit și deschis la sugestiile noastre. A  reușit să ne facă să ne simțim relaxați și confortabili în timpul  ședinței foto, ceea ce a contribuit la rezultatele extraordinare.Recomand cu încredere!`,
+    }, {
+    image: testimoniale,
+    alt: "Fotografii nunta Diana si Matei",
+    miri: "Basasa",
+    text: `Am avut recent plăcerea de a lucra cu Valentin și pot  spune cu siguranță că este unul dintre cei mai talentați și pasionați  fotografi pe care i-am întâlnit vreodată. Experiența noastră cu el a  fost absolut fantastică și rezultatele au depășit cu mult așteptărilePe lângă talentul său artistic, am apreciat și profesionalismul său. A  fost mereu punctual, bine pregătit și deschis la sugestiile noastre. A  reușit să ne facă să ne simțim relaxați și confortabili în timpul  ședinței foto, ceea ce a contribuit la rezultatele extraordinare.Recomand cu încredere!`,
+    },
 ]
 ---
 
@@ -24,7 +38,7 @@ let testimonialeInfo = [
             <div class="testimoniale-title-text">
                 <div class="testimoniale-title">
                     <p>Ce spun clientii</p>
-                    <h6>testimoniale</h6>
+                    <h6>TESTIMONIALE</h6>
                 </div>
                 <div class="testimoniale-text">
                         <h5>{info.miri}</h5>
@@ -38,15 +52,37 @@ let testimonialeInfo = [
         </div>
         ))
     }
+    <div class="testimoniale-controls">
+        <div class="next"><Image src={sageataStanga} alt="sageata stanga testimoniale"/></div>
+        <div class="previous"><Image src={sageataDreapta} alt="sageata dreapta testimoniale"/></div>
+    </div>
 </section>
+
+<script>
+
+
+</script>
+
+
 
 <style lang="scss">
     @use "../styles/variables" as *;
 
 
+    .testimoniale-wrapper {
+        margin: 4rem 0;
+        @include flex-center-col;
+    }
+
     .testimoniale-container {
         @include flex-center;
         @include max-width-1024;
+        height: 50rem;
+
+        @media (max-width: 800px) {
+            flex-direction: column;
+            height: auto;
+        }
     }
 
 
@@ -54,31 +90,74 @@ let testimonialeInfo = [
         width: 80rem;
         max-width: 100%;
         background-color: $grey;
-        padding: 4rem 0;
-
+        height: 100%;
         >img {
             object-fit: contain;
             width: 100%;
+            height: 100%;
         }
     }
 
     .testimoniale-title-text {
         @include flex;
-        align-items: center;        
-        justify-content: space-around;
         flex-direction: column;
+        justify-content: space-around;
         width: 100%;
+        height: 100%;
+    }
+
+    .testimoniale-title {
+        @include flex-center-col;
+        text-align: center;
+        background-color: $white;
+        width: 100%;
+        height: 60%;
+
+        @media (max-width: 800px) {
+            padding: 4rem 0;
+        }
+
+    >h6 {
+        @include header-playfair;
+        font-size: 3rem;
+        color: $font-color;
+    }
+
+    >p {
+        @include para-crimson;
+
+    }
     }
 
     .testimoniale-text {
         background-color: $grey;
-        padding: 0 4rem 0 0;
+        padding: 4rem 2rem 4rem 0;
+
+        @media (max-width: 800px) {
+            padding: 4rem 2rem;
+        }
+
+        >h5 {
+            @include header-playfair;
+            font-size: 2.5rem;
+            text-align: center;
+            color: $font-color;
+        }
+
+        >p {
+            @include para-crimson;
+
+    }
 
         &__buttons {
             @include flex;
             justify-content: end;
             gap: 2rem;
             padding: 2rem ;
+
+            @media (max-width:800px) {
+                justify-content: center;
+            }
 
             >a {
                 @include flex-center;
@@ -96,4 +175,69 @@ let testimonialeInfo = [
             
         }
     }
+
+
+    .testimoniale-controls {
+        @include flex-center;
+        padding: 4rem 0;
+        gap: 4rem;
+
+        .next, .previous {
+            >img {
+            width: 3rem;
+            height: 3rem;
+        }
+    }
+}
 </style>
+<script>
+    const testimonialeWrapper = document.querySelector('.testimoniale-wrapper');
+    const testimonialeContainers = document.querySelectorAll('.testimoniale-container');
+    const nextButton = document.querySelector('.next');
+    const previousButton = document.querySelector('.previous');
+
+    let currentIndex = 0;
+
+    function showTestimoniale(index) {
+        testimonialeContainers.forEach((container, i) => {
+            container.style.display = i === index ? 'flex' : 'none';
+        });
+    }
+
+    nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % testimonialeContainers.length;
+        showTestimoniale(currentIndex);
+    });
+
+    previousButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + testimonialeContainers.length) % testimonialeContainers.length;
+        showTestimoniale(currentIndex);
+    });
+
+    // Initialize the carousel by showing the first testimoniale
+    showTestimoniale(currentIndex);
+
+    // Add touch navigation for mobile
+    let startX = 0;
+    let endX = 0;
+
+    testimonialeWrapper.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    testimonialeWrapper.addEventListener('touchmove', (e) => {
+        endX = e.touches[0].clientX;
+    });
+
+    testimonialeWrapper.addEventListener('touchend', () => {
+        if (startX > endX + 50) {
+            // Swiped left
+            currentIndex = (currentIndex + 1) % testimonialeContainers.length;
+            showTestimoniale(currentIndex);
+        } else if (startX < endX - 50) {
+            // Swiped right
+            currentIndex = (currentIndex - 1 + testimonialeContainers.length) % testimonialeContainers.length;
+            showTestimoniale(currentIndex);
+        }
+    });
+</script>
