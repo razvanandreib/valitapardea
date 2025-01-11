@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@astrojs/image": "^0.18.0",
     "@fontsource-variable/cormorant": "^5.1.1",
     "@fontsource-variable/playfair": "^5.1.1",
     "@fontsource/crimson-text": "^5.1.1",
