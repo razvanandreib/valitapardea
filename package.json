@@ -13,6 +13,7 @@
   "description": "",
   "dependencies": {
     "@astrojs/image": "^0.18.0",
+    "@astrojs/vercel": "^8.0.1",
     "@fontsource-variable/cormorant": "^5.1.1",
     "@fontsource-variable/playfair": "^5.1.1",
     "@fontsource/crimson-text": "^5.1.1",
